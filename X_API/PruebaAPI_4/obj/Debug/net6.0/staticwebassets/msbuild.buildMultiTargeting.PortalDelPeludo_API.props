@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\PortalDelPeludo_API.props" />
+</Project>

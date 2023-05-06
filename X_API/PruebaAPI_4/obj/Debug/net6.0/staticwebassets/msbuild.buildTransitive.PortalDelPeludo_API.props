@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\PortalDelPeludo_API.props" />
+</Project>
