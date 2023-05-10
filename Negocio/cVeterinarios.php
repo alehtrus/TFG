@@ -8,7 +8,12 @@ class Veterinario {
     private string $telefono;
     private string $email;
     
-    function __construct($nombre, $direccion, $municipio, $telefono, $email)
+    function __construct()
+    {
+        
+    }
+
+    function init($nombre, $direccion, $municipio, $telefono, $email)
     {
         $this->nombre = $nombre;
         $this->direccion = $direccion;
@@ -18,11 +23,44 @@ class Veterinario {
     }
 
 
+    function unserializeVeterinarios($fichero)
+    {
+        $fichero = json_decode($fichero);
+        $lista_veterinarios = [];
 
-    function pintarVeterinario(){
-        
+        foreach($fichero as $veterinario){
+           $vet = new Veterinario();
+           $vet->init($veterinario->nombre,$veterinario->direccion,$veterinario->municipio,$veterinario->telefono,$veterinario->email);
+
+           $lista_veterinarios[] = $vet;
+
+        }
+
+        return $lista_veterinarios;
+
     }
 
+    function pintarVeterinarios($lista_veterinarios)
+    {
+
+        foreach($lista_veterinarios as $veterinario)
+        {
+            echo
+            ('
+            
+            <div class="col-md-4">
+                <div class="fh5co-blog animate-box">
+                    <div class="blog-text">
+                        <h3><a href="#">'.$veterinario->getNombre().'</a></h3>
+                        <p>'.$veterinario->getDireccion().'</p>
+                    </div>
+                </div>
+            </div>
+
+            ');
+        }
+
+    }
 
 
     function getNombre()
