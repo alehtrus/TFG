@@ -1,4 +1,4 @@
-﻿namespace PruebaAPI_4.Controllers.Model
+﻿namespace PortalDelPeludo_API.Controllers.Model
 {
     public class Mascota
     {
