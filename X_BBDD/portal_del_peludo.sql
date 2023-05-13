@@ -89,28 +89,42 @@ CREATE TABLE CITAS_MASCOTAS(
 
 */
 
+-- Inserción de veterinarios
+INSERT INTO veterinarios (id, nombre, direccion, municipio, telefono, email)
+VALUES
+(1, 'Clínica Veterinaria Mallorca', 'Calle de Joan Miró 11', 'Palma', '971 77 15 39', 'info@clinicasveterinariasmallorca.es'),
+(2, 'Hospital Veterinario Dr. Ramis', 'Calle València, 8', 'Marratxí', '971 14 44 04', 'info@hospitalveterinariodrramis.es'),
+(3, 'Clínica Veterinaria Son Sardina', 'Calle de la Mare de Déu de Montserrat, 20', 'Palma', '971 20 14 44', 'info@clinicasveterinariasmallsardina.es'),
+(4, 'Clínica Veterinaria Sa Pobla', 'Calle de Sant Antoni Maria Claret, 28', 'Sa Pobla', '971 54 02 67', 'info@clinicasveterinariassapobla.es'),
+(5, 'Clínica Veterinaria Felanitx', 'Avinguda de Joan Llompart, 38', 'Felanitx', '971 58 24 52', 'info@clinicasveterinariasfelanitx.es'),
+(6, 'Clínica Veterinaria Can Picafort', 'Calle de Isaac Peral, 8', 'Santa Margalida', '971 85 80 38', 'info@clinicasveterinariascanpicafort.es'),
+(7, 'Clínica Veterinaria Llucmajor', 'Avinguda dels Pins, 22', 'Llucmajor', '971 66 00 66', 'info@clinicasveterinariasllucmajor.es'),
+(8, 'Hospital Veterinari Son Ferriol', 'Calle de Son Ferriol, 147', 'Palma', '971 43 46 46', 'info@hospitalveterinarisonferriol.es'),
+(9, 'Clínica Veterinaria Inca', 'Calle de sa Pobla, 33', 'Inca', '971 50 10 11', 'info@clinicasveterinariasinca.es'),
+(10, 'Clínica Veterinaria Alcúdia', 'Calle de la Rosa dels Vents, 9', 'Alcúdia', '971 54 59 97', 'info@clinicasveterinariasalcudia.es');
+
 -- Inserción de usuarios
 INSERT INTO usuarios (DNI, contrasena, rol) VALUES
-  (11111111, SHA2('password1', 256), 'USR'),
-  (22222222, SHA2('password2', 256), 'USR'),
-  (33333333, SHA2('password3', 256), 'USR'),
-  (44444444, SHA2('password4', 256), 'USR'),
-  (55555555, SHA2('password5', 256), 'USR'),
-  (66666666, SHA2('password6', 256), 'USR'),
-  (77777777, SHA2('password7', 256), 'USR'),
-  (88888888, SHA2('password8', 256), 'USR'),
-  (99999999, SHA2('password9', 256), 'USR'),
-  (12345678, SHA2('password10', 256), 'USR'),
-  (23456789, SHA2('password11', 256), 'USR'),
-  (34567890, SHA2('password12', 256), 'USR'),
-  (45678901, SHA2('password13', 256), 'USR'),
-  (56789012, SHA2('password14', 256), 'USR'),
-  (67890123, SHA2('password15', 256), 'USR'),
-  (78901234, SHA2('password16', 256), 'USR'),
-  (89012345, SHA2('password17', 256), 'USR'),
-  (90123456, SHA2('password18', 256), 'USR'),
-  (01234567, SHA2('password19', 256), 'USR'),
-  (99999998, SHA2('adminpassword', 256), 'ADMIN'),
+  ("11111111A", SHA2('password1', 256), 'USR'),
+  ('22222222B', SHA2('password2', 256), 'USR'),
+  ('33333333C', SHA2('password3', 256), 'USR'),
+  ('44444444D', SHA2('password4', 256), 'USR'),
+  ('55555555E', SHA2('password5', 256), 'USR'),
+  ('66666666F', SHA2('password6', 256), 'USR'),
+  ('77777777G', SHA2('password7', 256), 'USR'),
+  ('88888888H', SHA2('password8', 256), 'USR'),
+  ('99999999I', SHA2('password9', 256), 'USR'),
+  ('12345678J', SHA2('password10', 256), 'USR'),
+  ('23456789K', SHA2('password11', 256), 'USR'),
+  ('34567890L', SHA2('password12', 256), 'USR'),
+  ('45678901M', SHA2('password13', 256), 'USR'),
+  ('56789012N', SHA2('password14', 256), 'USR'),
+  ('67890123O', SHA2('password15', 256), 'USR'),
+  ('78901234P', SHA2('password16', 256), 'USR'),
+  ('89012345Q', SHA2('password17', 256), 'USR'),
+  ('90123456R', SHA2('password18', 256), 'USR'),
+  ('01234567S', SHA2('password19', 256), 'USR'),
+  ('99999998G', SHA2('adminpassword', 256), 'ADMIN'),
   (11111211, SHA2('contrasena1', 256), 'VET'),
 (12222222, SHA2('contrasena2', 256), 'VET'),
 (33335333, SHA2('contrasena3', 256), 'VET'),
@@ -134,23 +148,6 @@ INSERT INTO usuarios (DNI, contrasena, rol) VALUES
 (21212121, SHA2('contrasena21', 256), 'VET');
 
 
-
--- Inserción de veterinarios
-INSERT INTO veterinarios (id, nombre, direccion, municipio, telefono, email)
-VALUES
-(1, 'Clínica Veterinaria Mallorca', 'Calle de Joan Miró 11', 'Palma', '971 77 15 39', 'info@clinicasveterinariasmallorca.es'),
-(2, 'Hospital Veterinario Dr. Ramis', 'Calle València, 8', 'Marratxí', '971 14 44 04', 'info@hospitalveterinariodrramis.es'),
-(3, 'Clínica Veterinaria Son Sardina', 'Calle de la Mare de Déu de Montserrat, 20', 'Palma', '971 20 14 44', 'info@clinicasveterinariasmallsardina.es'),
-(4, 'Clínica Veterinaria Sa Pobla', 'Calle de Sant Antoni Maria Claret, 28', 'Sa Pobla', '971 54 02 67', 'info@clinicasveterinariassapobla.es'),
-(5, 'Clínica Veterinaria Felanitx', 'Avinguda de Joan Llompart, 38', 'Felanitx', '971 58 24 52', 'info@clinicasveterinariasfelanitx.es'),
-(6, 'Clínica Veterinaria Can Picafort', 'Calle de Isaac Peral, 8', 'Santa Margalida', '971 85 80 38', 'info@clinicasveterinariascanpicafort.es'),
-(7, 'Clínica Veterinaria Llucmajor', 'Avinguda dels Pins, 22', 'Llucmajor', '971 66 00 66', 'info@clinicasveterinariasllucmajor.es'),
-(8, 'Hospital Veterinari Son Ferriol', 'Calle de Son Ferriol, 147', 'Palma', '971 43 46 46', 'info@hospitalveterinarisonferriol.es'),
-(9, 'Clínica Veterinaria Inca', 'Calle de sa Pobla, 33', 'Inca', '971 50 10 11', 'info@clinicasveterinariasinca.es'),
-(10, 'Clínica Veterinaria Alcúdia', 'Calle de la Rosa dels Vents, 9', 'Alcúdia', '971 54 59 97', 'info@clinicasveterinariasalcudia.es');
-
-/*
--- Inserción de propietarios
 INSERT INTO propietarios (id, DNI, nombre, direccion, telefono, email)
 VALUES 
    (1, '11111111A', 'Juan Perez', 'Calle Mayor 1', 123456789, 'juan.perez@gmail.com'),
@@ -175,7 +172,7 @@ VALUES
    (20, '22222222T', 'Lucia Sanchez', 'Calle Ramon 20', 555222111, 'lucia.sanchez@gmail.com');
    
    
--- Inserción de médicos
+
 INSERT INTO medicos (id, id_veterinario, DNI, nombre, numero_colegiado)
 VALUES
 (1, 1, '12345678A', 'Juan Pérez', 123456),
@@ -198,7 +195,7 @@ VALUES
 (18, 4, '89012345R', 'Juan González', 896123),
 (19, 4, '90123456S', 'Carmen Martínez', 921234),
 (20, 4, '01234567T', 'Raúl Ruiz', 012325);
-*/
+
 -- Insercion de mascotas
 
 INSERT INTO mascotas (id, nombre, especie, raza, edad, genero, id_propietario, fecha_ultima_visita)

@@ -115,13 +115,21 @@
 			<div id="fh5co-work">
 				<div class="row">
 					<?php
+					try {
 						require_once("../Negocio/cVeterinarios.php");
 
 						$url = "http://localhost:5174/api/Veterinario";
 						$contenido = file_get_contents($url);
-						$veterinario = new Veterinario();
-						$listaVets = $veterinario->unserializeVeterinarios($contenido);
-						$veterinario->pintarVeterinarios($listaVets);
+
+						if ($contenido != null && !empty($contenido)) {
+
+							$veterinario = new Veterinario();
+							$listaVets = $veterinario->unserializeVeterinarios($contenido);
+							$veterinario->pintarVeterinarios($listaVets);
+						}
+					} catch (Exception $ex) {
+						echo ("Mensaje de error: " . $ex->getMessage());
+					}
 
 					?>
 				</div>

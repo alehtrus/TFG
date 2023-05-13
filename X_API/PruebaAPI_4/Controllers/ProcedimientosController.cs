@@ -8,7 +8,7 @@ namespace PortalDelPeludo_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class VeterinarioController : ControllerBase
+    public class ProcedimientosController : ControllerBase
     {
         private string _connection = @"Server=localhost; Database=portal_del_peludo; Uid=root; Pwd=1234;";
 
@@ -16,11 +16,11 @@ namespace PortalDelPeludo_API.Controllers
 
         public IActionResult Get()
         {
-            IEnumerable<Model.Veterinario> lst = null;
+            IEnumerable<Model.Procedimiento> lst = null;
             using (var db = new MySqlConnection(_connection)) 
             {                
-                string query = "select id, nombre, direccion, municipio, telefono, email from veterinarios";
-                lst = db.Query<Model.Veterinario>(query);
+                string query = "select id, nombre, descripcion from procedimientos";
+                lst = db.Query<Model.Procedimiento>(query);
             }
 
             return Ok(lst);
@@ -28,13 +28,13 @@ namespace PortalDelPeludo_API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Insert(Model.Veterinario model) 
+        public IActionResult Insert(Model.Procedimiento model) 
         {
             int resultado = 0;
             using (var db = new MySqlConnection(_connection))
             {
-                string query = "insert into veterinarios(id, nombre, direccion, municipio, telefono, email)"
-                    + " values(@id, @nombre, @direccion, @municipio, @telefono, @email)";
+                string query = "insert into procedimientos(id, nombre, descripcion)"
+                    + " values(@id, @nombre, @descripcion)";
                 resultado = db.Execute(query, model);
             }
 
@@ -43,12 +43,12 @@ namespace PortalDelPeludo_API.Controllers
 
         [HttpPut]
 
-        public IActionResult Edit(Model.Veterinario model)
+        public IActionResult Edit(Model.Procedimiento model)
         {
             int resultado = 0;
             using (var db = new MySqlConnection(_connection))
             {
-                string query = "UPDATE veterinarios set nombre=@nombre, direccion=@direccion, municipio=@municipio, telefono=@telefono, email=@email"
+                string query = "UPDATE procedmientos set nombre=@nombre, descripcion=@descripcion"
                     + " where id=@id";
                 resultado = db.Execute(query, model);
             }
@@ -57,12 +57,12 @@ namespace PortalDelPeludo_API.Controllers
         }
 
         [HttpDelete]
-        public IActionResult Delete(Model.Veterinario model)
+        public IActionResult Delete(Model.Procedimiento model)
         {
             int resultado = 0;
             using (var db = new MySqlConnection(_connection))
             {
-                string query = "delete from veterinarios where id=@id";
+                string query = "delete from procedimientos where id=@id";
                 resultado = db.Execute(query, model);
             }
 
