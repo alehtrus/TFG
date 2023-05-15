@@ -120,7 +120,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-3 col-md-push-1 animate-box">
-					<h3>Our Address</h3>
+					<h3>Información de contácto</h3>
 					<ul class="contact-info">						
 						<li><i class="icon-phone3"></i>+34 687 21 76 32</li>
 						<li><i class="icon-location3"></i><a href="#">portaldelpeludo@gmail.com</a></li>

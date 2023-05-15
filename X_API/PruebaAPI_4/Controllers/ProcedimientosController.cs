@@ -13,7 +13,6 @@ namespace PortalDelPeludo_API.Controllers
         private string _connection = @"Server=localhost; Database=portal_del_peludo; Uid=root; Pwd=1234;";
 
         [HttpGet]
-
         public IActionResult Get()
         {
             IEnumerable<Model.Procedimiento> lst = null;
