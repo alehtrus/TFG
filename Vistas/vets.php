@@ -117,8 +117,9 @@
 					<?php
 					try {
 						require_once("../Negocio/cVeterinarios.php");
+						require_once("../Util/Util.php");
 
-						$url = "http://localhost:5174/api/Veterinario";
+						$url = GET_VETERINARIOS;
 						$contenido = file_get_contents($url);
 
 						if ($contenido != null && !empty($contenido)) {

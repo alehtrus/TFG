@@ -2,6 +2,7 @@
 
 class Mascota {
 
+    private string $id;
     private string $nombre;
     private string $especie;
     private string $raza;
@@ -16,8 +17,9 @@ class Mascota {
         
     }
 
-    function init($nombre, $especie, $raza, $edad, $genero, $id_propietario, $fecha_ultima_visita)
+    function init($id, $nombre, $especie, $raza, $edad, $genero, $id_propietario, $fecha_ultima_visita)
     {
+        $this->id = $id;
         $this->nombre = $nombre;
         $this->especie = $especie;
         $this->raza = $raza;
@@ -36,7 +38,7 @@ class Mascota {
 
         foreach($fichero as $mascota){
            $masct  = new Mascota();
-           $masct ->init($mascota->nombre, $mascota->especie, $mascota->raza, $mascota->edad, $mascota->genero, $mascota->id_propietario, $mascota->fecha_ultima_visita);
+           $masct ->init($mascota->id, $mascota->nombre, $mascota->especie, $mascota->raza, $mascota->edad, $mascota->genero, $mascota->id_propietario, $mascota->fecha_ultima_visita);
 
            $lista_mascotas[] = $mascota ;
 
@@ -57,6 +59,8 @@ class Mascota {
                 <div class="fh5co-blog animate-box">
                     <div class="blog-text">
                         <h3><a href="#">'.$mascota->nombre.'</a></h3>
+                        <p class="linksMascotas"><a href="pet.php?id='.$mascota->id.'">Perfil</a></p>
+                        <p class="linksMascotas"><a>Visitas</a></p>
                     </div>
                 </div>
             </div>
@@ -67,6 +71,14 @@ class Mascota {
 
     }
 
+
+    function getId(){
+        return $this->id;
+    }
+
+    function setId($id){
+        return $this->id = $id;
+    }
 
     function getNombre()
     {

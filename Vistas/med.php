@@ -63,11 +63,12 @@
 			<div id="fh5co-work">
 				<?php
 				require_once('../Negocio/cMascota.php');
+				require_once('../Util/Util.php');
 
 				ini_set('display_errors', 'On');
 				ini_set('html_errors', 0);
 
-				$url = "http://localhost:5174/api/Mascota/medico";
+				$url = GET_TODAS_MASCOTAS;
 				$contenido = file_get_contents($url);
 				//var_dump($contenido);
 				if ($contenido != null && !empty($contenido)) {
@@ -76,7 +77,7 @@
 					//var_dump($contenido);
 					$listaMascotas = $mascota->unserializeMascotas($contenido);
 					$mascota->pintarMascotas($listaMascotas);
-				}
+				}				
 				?>
 			</div>
 		</div>

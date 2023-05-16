@@ -15,7 +15,7 @@ namespace PortalDelPeludo_API.Controllers
 
         [HttpGet]
         [Route("medico")]
-        public IActionResult Get()
+        public IActionResult GetTodas()
         {
             IEnumerable<Model.Mascota> lst = null;
             using (var db = new MySqlConnection(_connection))
@@ -30,13 +30,29 @@ namespace PortalDelPeludo_API.Controllers
 
         [HttpGet]
         [Route("propietario")]
-        public IActionResult GetAll(int id)
+        public IActionResult GetMascotaPropietario(int id)
         {
             IEnumerable<Model.Mascota> lst = null;
             using (var db = new MySqlConnection(_connection))
             {
                 string query = "select id, nombre, especie, raza, edad, genero, id_propietario, fecha_ultima_visita from mascotas"
                     + " where id_propietario = " + id;
+                lst = db.Query<Model.Mascota>(query);
+            }
+
+            return Ok(lst);
+
+        }
+
+        [HttpGet]
+        [Route("mascota")]
+        public IActionResult GetUnaMascota(int id)
+        {
+            IEnumerable<Model.Mascota> lst = null;
+            using (var db = new MySqlConnection(_connection))
+            {
+                string query = "select id, nombre, especie, raza, edad, genero, id_propietario, fecha_ultima_visita from mascotas"
+                    + " where id =" + id;
                 lst = db.Query<Model.Mascota>(query);
             }
 

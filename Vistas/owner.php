@@ -63,13 +63,14 @@
 			<div id="fh5co-work">
 				<?php
 				require_once('../Negocio/cMascota.php');
+				require_once('../Util/Util.php');
 
 				$idOwner = $_GET['id'];
 
 				ini_set('display_errors', 'On');
 				ini_set('html_errors', 0);
 
-				$url = "http://localhost:5174/api/Mascota/propietario?id=". $idOwner ;
+				$url = GET_MASCOTAS_POR_PROPIETARIO. $idOwner ;
 				$contenido = file_get_contents($url);
 
 				//var_dump($contenido);

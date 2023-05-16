@@ -119,8 +119,9 @@
 					ini_set('html_errors', 0);
 
 					require_once("../Negocio/cProcedimientos.php");
+					require_once("../Util/Util.php");
 
-					$url = "http://localhost:5174/api/Procedimientos";
+					$url = GET_PROCEDIMIENTOS;
 					$contenido = file_get_contents($url);
 					//var_dump($contenido);
 					if ($contenido != null && !empty($contenido)) {
