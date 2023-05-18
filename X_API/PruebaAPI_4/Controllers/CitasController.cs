@@ -33,14 +33,16 @@ namespace PortalDelPeludo_API.Controllers
         [Route("todasCitas")]
         public IActionResult GetTodasCitas()
         {
-            IEnumerable<Citas> lst = null;
+            IEnumerable<CitasExtended> lst = null;
             using (var db = new MySqlConnection(_connection))
             {
-                string query = "SELECT citas.id AS idCitas, fecha, id_mascota, medicos.nombre AS nombreMedico, motivo, " +
-                    "procedimientos.id AS idProcedimiento, procedimientos.nombre as nombreProcedimiento, " +
-                    "descripcion FROM citas INNER JOIN procedimientos ON citas.procedimiento_id = procedimientos.id " +
-                    "INNER JOIN medicos ON medicos.id = citas.id_medico order by fecha";
-                lst = db.Query<Citas>(query);
+                string query = "select citas.id AS idCitas, fecha, mascotas.nombre as nombreMascota, medicos.nombre AS nombreMedico, " +
+                    "motivo, procedimientos.id AS idProcedimiento, procedimientos.nombre AS nombreProcedimiento, descripcion " +
+                    "FROM citas INNER JOIN procedimientos ON citas.procedimiento_id = procedimientos.id " +
+                    "INNER JOIN medicos ON medicos.id = citas.id_medico INNER JOIN mascotas ON mascotas.id = citas.id_mascota " +
+                    "ORDER BY fecha desc";
+                
+                lst = db.Query<CitasExtended>(query);
             }
 
             return Ok(lst);

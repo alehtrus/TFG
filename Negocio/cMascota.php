@@ -90,5 +90,59 @@ class Mascota {
         $this->nombre = $nombre;
     }
 
+    function getEspecie(){
+        return $this->especie;
+    }
+
+    function setEspecie($especie){
+        return $this->especie = $especie;
+    }
+
+    function getRaza()
+    {
+        return $this->raza;
+    }
+
+    function setRaza($raza)
+    {
+        $this->raza = $raza;
+    }
+
+    function getEdad(){
+        return $this->edad;
+    }
+
+    function setEdad($edad){
+        return $this->edad = $edad;
+    }
+
+    function getGenero()
+    {
+        return $this->genero;
+    }
+
+    function setGenero($genero)
+    {
+        $this->genero = $genero;
+    }
+
+    function getIdPropietario(){
+        return $this->id_propietario;
+    }
+
+    function setIdPropietario($id_propietario){
+        return $this->id_propietario = $id_propietario;
+    }
+
+    function getFechaUltVisita()
+    {
+        return $this->fecha_ultima_visita;
+    }
+
+    function setFechaUltVisita($fecha_ultima_visita)
+    {
+        $this->fecha_ultima_visita = $fecha_ultima_visita;
+    }
+
 
 }

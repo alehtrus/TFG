@@ -32,9 +32,38 @@
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
 
+	<style>
+		.visita td{
+			width: 10%;
+			padding: 0px 15px;
+		}
+		.visita td:first-child{
+			width: 20%;
+			padding: 0px 15px;
+		}
+		.visita td:last-child{
+			width: 25%;
+			padding: 0px 15px;
+		}
+		.visita .nombreMascota{
+			width: 5%;
+			padding: 0px 15px;
+		}
+		.visita .nombreMedico{
+			width: 15%;
+			padding: 0px 15px;
+		}
+		.visita .motivo{
+			width: 25%;
+			padding: 0px 15px;
+		}
+	</style>
+
 
 </head>
+
 <body>
+
 	<div id="page">
 		<nav class="fh5co-nav" role="navigation">
 			<div class="container-wrap">
@@ -58,146 +87,82 @@
 			</div>
 		</nav>
 		<div class="container-wrap">
+			<aside id="fh5co-hero">
+				<!-- CARRUSEL -->
+				<div class="flexslider">
+					<ul class="slides">
+						<li style="background-image: url(images/vet1.jpg);">
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-md-6 col-md-offset-3 col-md-push-3 slider-text">
+										<div class="slider-text-inner">
+											<h1>Ellos tabien merecen un sistema centralizado</h1>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li style="background-image: url(images/vet2.jpg);">
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-md-6 col-md-offset-3 col-md-pull-3 slider-text">
+										<div class="slider-text-inner">
+											<h1>Por el cariño que nos proporcionan</h1>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li style="background-image: url(images/vet3.jpg);">
+							<div class="container-fluids">
+								<div class="row">
+									<div class="col-md-6 col-md-offset-3 slider-text">
+										<div class="slider-text-inner text-center">
+											<h1>Siempre a nuestro lado, igual que nosotros al suyo</h1>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li style="background-image: url(images/vet4.jpg);">
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-md-6 col-md-offset-3 col-md-push-3 slider-text">
+										<div class="slider-text-inner">
+											<h1>Por el mejor cuidado posible</h1>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</aside>
+
 			<div id="fh5co-work">
-				<?php
+				<div class="row">
+					<?php
+					try {
+						require_once("../Negocio/cVisita.php");
+						require_once("../Util/Util.php");
 
-				require_once('../Negocio/cMascota.php');
-				require_once('../Util/Util.php');
+						$idMascota = $_GET['id'];
 
-				$idMascota = $_GET['id'];
+						$url = GET_VISITAS_MASCOTA . $idMascota;
+						$contenido = file_get_contents($url);
+						
+						if ($contenido != null && !empty($contenido)) {
 
-				ini_set('display_errors', 'On');
-				ini_set('html_errors', 0);
+							$visita = new Visita();
+							$listaVisitas = $visita->unserializeVisitas($contenido);
+							$visita->pintarVisitas($listaVisitas);
+						}
+					} catch (Exception $ex) {
+						echo ("Mensaje de error: " . $ex->getMessage());
+					}
 
-				$url = GET_MASCOTA. $idMascota ;
-				$contenido = file_get_contents($url);
-
-				$mascota = new Mascota();
-				$mascota->unserializeMascotas($contenido);
-
-				$listaMascotas = $mascota->unserializeMascotas($contenido);
-
-				//var_dump($listaMascotas[0]);
-				echo ('
-					<div class="row">
-				<div class="col-xs-4">
-					<p>Nombre</p>					
+					?>
 				</div>
-				<div class="col-xs-4">
-					<p>'.$listaMascotas[0]->nombre.'</p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-4">
-					<p>Especie</p>					
-				</div>
-				<div class="col-xs-4">
-					<p>'.$listaMascotas[0]->especie.'</p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-4">
-					<p>Raza</p>					
-				</div>
-				<div class="col-xs-4">
-					<p>'.$listaMascotas[0]->raza.'</p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-4">
-					<p>Edad</p>					
-				</div>
-				<div class="col-xs-4">
-					<p>'.$listaMascotas[0]->edad.'</p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-4">
-					<p>Género</p>					
-				</div>
-				<div class="col-xs-4">
-					<p>'.$listaMascotas[0]->raza.'</p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-4">
-					<p>Fecha de la última visita</p>					
-				</div>
-				<div class="col-xs-4">
-					<p>'.$listaMascotas[0]->fecha_ultima_visita.'</p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-4">
-					<p><a href="visitsPet.php?id='.$listaMascotas[0]->id.'">Visitas</a></p>			
-				</div>
-			</div>
-					'
-				);
-
-				?>
-
-				<!--
-			<table style=" margin: 20px auto; width: 50%;">
-				<thead>
-					<tr>
-						<td>
-							Foto de la mascota?
-						</td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>
-							Nombre:
-						</td>
-						<td>
-							nombre_de_prueba
-						</td>
-					</tr>
-					<tr>
-						<td>
-							Especie:
-						</td>
-						<td>
-							nombre_de_la_especie
-						</td>
-					</tr>
-					<tr>
-						<td>
-							Raza:
-						</td>
-						<td>
-							nombre_de_la_raza
-						</td>
-					</tr>
-					<tr>
-						<td>
-							Edad:
-						</td>
-						<td>
-							edad_de_prueba
-						</td>
-					</tr>
-					<tr>
-						<td>
-							Género:
-						</td>
-						<td>
-							género_del_animal
-						</td>
-					</tr>
-					<tr>
-						<td>
-							Fehca de la última visita:
-						</td>
-						<td>
-							fecha_ultima_visita
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			-->
 			</div>
 		</div>
 
