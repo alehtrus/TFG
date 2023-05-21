@@ -79,6 +79,7 @@
 								<li><a href="vets.php">Veterinarios</a></li>
 								<li><a href="about.php">¿Qué somos?</a></li>
 								<li><a href="contact.php">Contacto</a></li>
+								<li><a href="logout.php">Cerrar sesión</a></li>
 							</ul>
 						</div>
 					</div>

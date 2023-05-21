@@ -104,20 +104,21 @@ VALUES
 (10, 'Clínica Veterinaria Alcúdia', 'Calle de la Rosa dels Vents, 9', 'Alcúdia', '971 54 59 97', 'info@clinicasveterinariasalcudia.es');
 
 -- Inserción de usuarios
+/*
 INSERT INTO usuarios (DNI, contrasena, rol)
 VALUES 
-('Z5728886M', SHA2('contraseña1', 256), 'VET'),
-('36701642J', SHA2('contraseña2', 256), 'VET'),
-('48568720B', SHA2('contraseña3', 256), 'VET'),
-('18516119S', SHA2('contraseña4', 256), 'VET'),
-('47249526M', SHA2('contraseña5', 256), 'VET'),
-('86138623N', SHA2('contraseña6', 256), 'USR'),
-('58840661Z', SHA2('contraseña7', 256), 'USR'),
-('66377255Z', SHA2('contraseña8', 256), 'USR'),
-('98006682W', SHA2('contraseña9', 256), 'USR'),
-('10087273W', SHA2('contraseña10', 256), 'USR'),
-('84604555K', SHA2('contraseña11', 256), 'ADMIN');
-
+('Z5728886M', 'contraseña', 'VET'),
+('36701642J', 'contraseña', 'VET'),
+('48568720B', 'contraseña', 'VET'),
+('18516119S', 'contraseña', 'VET'),
+('47249526M', 'contraseña', 'VET'),
+('86138623N', 'contraseña', 'USR'),
+('58840661Z', 'contraseña', 'USR'),
+('66377255Z', 'contraseña', 'USR'),
+('98006682W', 'contraseña', 'USR'),
+('10087273W', 'contraseña', 'USR'),
+('84604555K', 'contraseña', 'ADMIN');
+*/
 
 
 INSERT INTO propietarios (id, DNI, nombre, direccion, telefono, email)

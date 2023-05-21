@@ -50,6 +50,7 @@
 								<li><a href="vets.php">Veterinarios</a></li>
 								<li><a href="about.php">¿Qué somos?</a></li>
 								<li><a href="contact.php">Contacto</a></li>
+								<li><a href="logout.php">Cerrar sesión</a></li>
 							</ul>
 						</div>
 					</div>
@@ -84,7 +85,7 @@
 					<p>Nombre</p>					
 				</div>
 				<div class="col-xs-4">
-					<p>'.$listaMascotas[0]->nombre.'</p>
+					<p>'.$listaMascotas[0]->getNombre().'</p>
 				</div>
 			</div>
 			<div class="row">
@@ -92,7 +93,7 @@
 					<p>Especie</p>					
 				</div>
 				<div class="col-xs-4">
-					<p>'.$listaMascotas[0]->especie.'</p>
+					<p>'.$listaMascotas[0]->getEspecie().'</p>
 				</div>
 			</div>
 			<div class="row">
@@ -100,7 +101,7 @@
 					<p>Raza</p>					
 				</div>
 				<div class="col-xs-4">
-					<p>'.$listaMascotas[0]->raza.'</p>
+					<p>'.$listaMascotas[0]->getRaza().'</p>
 				</div>
 			</div>
 			<div class="row">
@@ -108,7 +109,7 @@
 					<p>Edad</p>					
 				</div>
 				<div class="col-xs-4">
-					<p>'.$listaMascotas[0]->edad.'</p>
+					<p>'.$listaMascotas[0]->getEdad().'</p>
 				</div>
 			</div>
 			<div class="row">
@@ -116,7 +117,7 @@
 					<p>Género</p>					
 				</div>
 				<div class="col-xs-4">
-					<p>'.$listaMascotas[0]->raza.'</p>
+					<p>'.$listaMascotas[0]->getGenero().'</p>
 				</div>
 			</div>
 			<div class="row">
@@ -124,12 +125,12 @@
 					<p>Fecha de la última visita</p>					
 				</div>
 				<div class="col-xs-4">
-					<p>'.$listaMascotas[0]->fecha_ultima_visita.'</p>
+					<p>'.$listaMascotas[0]->getFechaUltVisita().'</p>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-4">
-					<p><a href="visitsPet.php?id='.$listaMascotas[0]->id.'">Visitas</a></p>			
+					<p><a href="visitsPet.php?id='.$listaMascotas[0]->getId().'">Visitas</a></p>			
 				</div>
 			</div>
 					'

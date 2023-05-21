@@ -40,7 +40,7 @@ class Mascota {
            $masct  = new Mascota();
            $masct ->init($mascota->id, $mascota->nombre, $mascota->especie, $mascota->raza, $mascota->edad, $mascota->genero, $mascota->id_propietario, $mascota->fecha_ultima_visita);
 
-           $lista_mascotas[] = $mascota ;
+           $lista_mascotas[] = $masct ;
 
         }
 
@@ -58,9 +58,9 @@ class Mascota {
             <div class="col-md-4">            
                 <div class="fh5co-blog animate-box">
                     <div class="blog-text">
-                        <h3><a href="#">'.$mascota->nombre.'</a></h3>
-                        <p class="linksMascotas"><a href="pet.php?id='.$mascota->id.'">Perfil</a></p>
-                        <p class="linksMascotas"><a>Visitas</a></p>
+                        <h3><a href="#">'.$mascota->getNombre().'</a></h3>
+                        <p class="linksMascotas"><a href="pet.php?id='.$mascota->getId().'">Perfil</a></p>
+                        <p class="linksMascotas"><a href="visitsPet.php?id='.$mascota->getId().'">Visitas</a></p>
                     </div>
                 </div>
             </div>
