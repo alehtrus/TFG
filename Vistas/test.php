@@ -14,11 +14,15 @@
 
     require_once("../Negocio/cUsuario.php");
     require_once("../Negocio/cPropietario.php");
+    require_once("../Util/Util.php");
 
-    $a = new Usuario();
+    $fecha = formatearFecha("02/06/2023 00:00:00");
+    echo($fecha);
+
+    //$a = new Usuario();
     //$a->insertarUsuario("45389640C", "12345678", "vet");
     //$a->insertarUsuario("60389640C", "12345678", "usr");
-    $a->verificar("18516119S","contraseña");
+    //$a->verificar("18516119S","contraseña");
 
     /* INESERCCION DE USUARIOS EN LA BASE DE DATOS
     $a->insertarUsuario('Z5728886M', 'contraseña', 'VET');

@@ -30,6 +30,26 @@ class Mascota {
 
     }
 
+    function editarMascota($id,$nombre,$especie,$raza,$edad,$genero,$idPropietario,$fecha)
+    {        
+
+        $rq = "http://localhost:5174/api/Mascota?id=".$id."&nombre=".$nombre."&especie=".$especie."&raza=".$raza."&edad=".$edad."&genero=".$genero."&idPropietario=".$idPropietario."&fechaUltimavisita=".$fecha."";
+
+        $rs = curl_init($rq);
+
+        curl_setopt($rs, CURLOPT_CUSTOMREQUEST, 'PUT');
+        curl_setopt($rs, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec($rs);
+        if(curl_errno($rs)) {
+            $error_message = curl_error($rs);
+            print($error_message);
+        } else {
+            print($response);
+            curl_close($rs);
+        }
+    }
+
 
     function unserializeMascotas($fichero)
     {
@@ -61,6 +81,29 @@ class Mascota {
                         <h3><a href="#">'.$mascota->getNombre().'</a></h3>
                         <p class="linksMascotas"><a href="pet.php?id='.$mascota->getId().'">Perfil</a></p>
                         <p class="linksMascotas"><a href="visitsPet.php?id='.$mascota->getId().'">Visitas</a></p>
+                    </div>
+                </div>
+            </div>
+
+            ');
+        }
+        echo ('</div>');
+
+    }
+
+    function pintarMascotasMeds($lista_mascotas)
+    {
+        echo ('<div class="row">');
+        foreach($lista_mascotas as $mascota)
+        {
+            echo
+            ('            
+            <div class="col-md-4">            
+                <div class="fh5co-blog animate-box">
+                    <div class="blog-text">
+                        <h3><a href="#">'.$mascota->getNombre().'</a></h3>
+                        <p class="linksMascotas"><a href="pet.php?id='.$mascota->getId().'&a=v">Perfil</a></p>
+                        <p class="linksMascotas"><a href="visitsPet.php?id='.$mascota->getId().'&a=v">Visitas</a></p>
                     </div>
                 </div>
             </div>

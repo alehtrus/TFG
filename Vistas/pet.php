@@ -34,6 +34,7 @@
 
 
 </head>
+
 <body>
 	<div id="page">
 		<nav class="fh5co-nav" role="navigation">
@@ -70,7 +71,7 @@
 				ini_set('display_errors', 'On');
 				ini_set('html_errors', 0);
 
-				$url = GET_MASCOTA. $idMascota ;
+				$url = GET_MASCOTA . $idMascota;
 				$contenido = file_get_contents($url);
 
 				$mascota = new Mascota();
@@ -78,14 +79,20 @@
 
 				$listaMascotas = $mascota->unserializeMascotas($contenido);
 
-				//var_dump($listaMascotas[0]);
-				echo ('
+
+				if (isset($_GET['a']) && $_GET['a'] == 'v') {
+					// Version con los enlaces de gestion para los veterinarios
+					echo ('
 					<div class="row">
 				<div class="col-xs-4">
 					<p>Nombre</p>					
 				</div>
 				<div class="col-xs-4">
-					<p>'.$listaMascotas[0]->getNombre().'</p>
+					<p>' . $listaMascotas[0]->getNombre() . '</p>
+				</div>
+				<div class="col-xs-4 gestion">				
+					<a href="editPet.php?id='.$listaMascotas[0]->getId().'">Editar </a>|
+					<a href=""> Eliminar</a>
 				</div>
 			</div>
 			<div class="row">
@@ -93,7 +100,7 @@
 					<p>Especie</p>					
 				</div>
 				<div class="col-xs-4">
-					<p>'.$listaMascotas[0]->getEspecie().'</p>
+					<p>' . $listaMascotas[0]->getEspecie() . '</p>
 				</div>
 			</div>
 			<div class="row">
@@ -101,7 +108,7 @@
 					<p>Raza</p>					
 				</div>
 				<div class="col-xs-4">
-					<p>'.$listaMascotas[0]->getRaza().'</p>
+					<p>' . $listaMascotas[0]->getRaza() . '</p>
 				</div>
 			</div>
 			<div class="row">
@@ -109,7 +116,7 @@
 					<p>Edad</p>					
 				</div>
 				<div class="col-xs-4">
-					<p>'.$listaMascotas[0]->getEdad().'</p>
+					<p>' . $listaMascotas[0]->getEdad() . '</p>
 				</div>
 			</div>
 			<div class="row">
@@ -117,7 +124,7 @@
 					<p>Género</p>					
 				</div>
 				<div class="col-xs-4">
-					<p>'.$listaMascotas[0]->getGenero().'</p>
+					<p>' . $listaMascotas[0]->getGenero() . '</p>
 				</div>
 			</div>
 			<div class="row">
@@ -125,80 +132,78 @@
 					<p>Fecha de la última visita</p>					
 				</div>
 				<div class="col-xs-4">
-					<p>'.$listaMascotas[0]->getFechaUltVisita().'</p>
+					<p>' . $listaMascotas[0]->getFechaUltVisita() . '</p>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-4">
-					<p><a href="visitsPet.php?id='.$listaMascotas[0]->getId().'">Visitas</a></p>			
+					<p><a href="visitsPet.php?id=' . $listaMascotas[0]->getId() . '">Visitas</a></p>			
 				</div>
 			</div>
 					'
-				);
+					);
+				} else {
+					//Versión sin enlaces para usuarios
+					echo ('
+					<div class="row">
+				<div class="col-xs-4">
+					<p>Nombre</p>					
+				</div>
+				<div class="col-xs-4">
+					<p>' . $listaMascotas[0]->getNombre() . '</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-4">
+					<p>Especie</p>					
+				</div>
+				<div class="col-xs-4">
+					<p>' . $listaMascotas[0]->getEspecie() . '</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-4">
+					<p>Raza</p>					
+				</div>
+				<div class="col-xs-4">
+					<p>' . $listaMascotas[0]->getRaza() . '</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-4">
+					<p>Edad</p>					
+				</div>
+				<div class="col-xs-4">
+					<p>' . $listaMascotas[0]->getEdad() . '</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-4">
+					<p>Género</p>					
+				</div>
+				<div class="col-xs-4">
+					<p>' . $listaMascotas[0]->getGenero() . '</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-4">
+					<p>Fecha de la última visita</p>					
+				</div>
+				<div class="col-xs-4">
+					<p>' . $listaMascotas[0]->getFechaUltVisita() . '</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-4">
+					<p><a href="visitsPet.php?id=' . $listaMascotas[0]->getId() . '">Visitas</a></p>			
+				</div>
+			</div>
+					'
+					);
+				}
 
 				?>
 
-				<!--
-			<table style=" margin: 20px auto; width: 50%;">
-				<thead>
-					<tr>
-						<td>
-							Foto de la mascota?
-						</td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>
-							Nombre:
-						</td>
-						<td>
-							nombre_de_prueba
-						</td>
-					</tr>
-					<tr>
-						<td>
-							Especie:
-						</td>
-						<td>
-							nombre_de_la_especie
-						</td>
-					</tr>
-					<tr>
-						<td>
-							Raza:
-						</td>
-						<td>
-							nombre_de_la_raza
-						</td>
-					</tr>
-					<tr>
-						<td>
-							Edad:
-						</td>
-						<td>
-							edad_de_prueba
-						</td>
-					</tr>
-					<tr>
-						<td>
-							Género:
-						</td>
-						<td>
-							género_del_animal
-						</td>
-					</tr>
-					<tr>
-						<td>
-							Fehca de la última visita:
-						</td>
-						<td>
-							fecha_ultima_visita
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			-->
 			</div>
 		</div>
 

@@ -63,6 +63,12 @@
 		<div class="container-wrap">
 			<div id="fh5co-work">
 				<?php
+				session_start(); // reanudamos la sesión
+				if (!isset($_SESSION['usuario'])) {
+					header("Location: index.php");
+				}
+				echo ("Bienvenido " . $_SESSION['usuario']);
+
 				require_once('../Negocio/cMascota.php');
 				require_once('../Util/Util.php');
 
@@ -77,8 +83,8 @@
 					$mascota = new Mascota();
 					//var_dump($contenido);
 					$listaMascotas = $mascota->unserializeMascotas($contenido);
-					$mascota->pintarMascotas($listaMascotas);
-				}				
+					$mascota->pintarMascotasMeds($listaMascotas);
+				}
 				?>
 			</div>
 		</div>

@@ -36,7 +36,6 @@
 </head>
 
 <body>
-
 	<div id="page">
 		<nav class="fh5co-nav" role="navigation">
 			<div class="container-wrap">
@@ -52,6 +51,7 @@
 								<li><a href="vets.php">Veterinarios</a></li>
 								<li><a href="about.php">¿Qué somos?</a></li>
 								<li><a href="contact.php">Contacto</a></li>
+								<li><a href="logout.php">Cerrar sesión</a></li>
 							</ul>
 						</div>
 					</div>
@@ -60,85 +60,99 @@
 			</div>
 		</nav>
 		<div class="container-wrap">
-			<aside id="fh5co-hero">
-				<!-- CARRUSEL -->
-				<div class="flexslider">
-					<ul class="slides">
-						<li style="background-image: url(images/vet1.jpg);">
-							<div class="container-fluid">
-								<div class="row">
-									<div class="col-md-6 col-md-offset-3 col-md-push-3 slider-text">
-										<div class="slider-text-inner">
-											<h1>Ellos tabien merecen un sistema centralizado</h1>
-										</div>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li style="background-image: url(images/vet2.jpg);">
-							<div class="container-fluid">
-								<div class="row">
-									<div class="col-md-6 col-md-offset-3 col-md-pull-3 slider-text">
-										<div class="slider-text-inner">
-											<h1>Por el cariño que nos proporcionan</h1>
-										</div>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li style="background-image: url(images/vet3.jpg);">
-							<div class="container-fluids">
-								<div class="row">
-									<div class="col-md-6 col-md-offset-3 slider-text">
-										<div class="slider-text-inner text-center">
-											<h1>Siempre a nuestro lado, igual que nosotros al suyo</h1>
-										</div>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li style="background-image: url(images/vet4.jpg);">
-							<div class="container-fluid">
-								<div class="row">
-									<div class="col-md-6 col-md-offset-3 col-md-push-3 slider-text">
-										<div class="slider-text-inner">
-											<h1>Por el mejor cuidado posible</h1>
-										</div>
-									</div>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</aside>
-
 			<div id="fh5co-work">
-				<div class="row">
-					<?php
-					ini_set('display_errors', 'On');
-					ini_set('html_errors', 0);
+				<?php
 
-					require_once("../Negocio/cProcedimientos.php");
-					require_once("../Util/Util.php");
+				require_once('../Negocio/cMascota.php');
+				require_once('../Util/Util.php');
 
-					//$cosa = error_reporting(E_ALL ^ E_WARNING);
-					set_error_handler('customErrorHandle()');
-					
+				$idMascota = $_GET['id'];
 
-					$url = GET_PROCEDIMIENTOS;
-					$contenido = file_get_contents($url);
-					//var_dump($contenido);
-					if ($contenido != null && !empty($contenido)) {
+				ini_set('display_errors', 'On');
+				ini_set('html_errors', 0);
 
-						$procedimiento = new Procedimiento();
-						//var_dump($contenido);
-						$listaProcedimientos = $procedimiento->unserializeProcedimientos($contenido);
-						$procedimiento->pintarProcedimientos($listaProcedimientos);
-					}
+				$url = GET_MASCOTA. $idMascota ;
+				$contenido = file_get_contents($url);
 
+				$mascota = new Mascota();
+				$mascota->unserializeMascotas($contenido);
 
-					?>
-				</div>
+				$listaMascotas = $mascota->unserializeMascotas($contenido);
+
+				//var_dump($listaMascotas[0]);
+				echo ('
+				<form action="../Negocio/acciones/editarMascota.php" method="POST">
+					<div class="row">
+						<div class="col-xs-4">
+							<label for="nombre">Nombre: </label>
+						</div>
+						<div class="col-xs-4">
+							<input type="text" name="nombre" id="nombre" value="'.$listaMascotas[0]->getNombre().'">
+							<input type="hidden" name="idMascota" id="idMascota" value="'.$listaMascotas[0]->getID().'">
+							<input type="hidden" name="propietario" id="propietario" value="'.$listaMascotas[0]->getIdPropietario().'">
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-4">
+							<label for="especie">Especie: </label>
+						</div>
+						<div class="col-xs-4">
+							<input type="text" name="especie" id="especie" value="'.$listaMascotas[0]->getEspecie().'">
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-4">
+							<label for="raza">Raza: </label>
+						</div>
+						<div class="col-xs-4">
+							<input type="text" name="raza" id="raza" value="'.$listaMascotas[0]->getRaza().'">
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-4">
+							<label for="edad">Edad: </label>
+						</div>
+						<div class="col-xs-4">
+							<input type="number" name="edad" id="edad" value="'.$listaMascotas[0]->getEdad().'">
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-4">
+							<label for="genero">Genero: </label>
+						</div>
+						<div class="col-xs-4">
+							<select name="genero" id="genero" default="adad">							
+								<option value="" selected="true" disabled="disabled">Selecciona una opción</option>
+								<option value="Macho">Macho</option>
+								<option value="Hembra">Hembra</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-4">
+							<label for="fecha">Fecha de la última visita: </label>
+						</div>
+						<div class="col-xs-4">
+							<input type="datetime" name="fecha" id="fecha" value="'.$listaMascotas[0]->getFechaUltVisita().'">
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-4">
+							<input type="submit" value="Guardar">
+						</div>
+					</div>
+				</form>
+					'
+				);
+
+				?>
+
 			</div>
 		</div>
 
