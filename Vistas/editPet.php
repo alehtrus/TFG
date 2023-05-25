@@ -71,7 +71,7 @@
 				ini_set('display_errors', 'On');
 				ini_set('html_errors', 0);
 
-				$url = GET_MASCOTA. $idMascota ;
+				$url = GET_MASCOTA . $idMascota;
 				$contenido = file_get_contents($url);
 
 				$mascota = new Mascota();
@@ -79,17 +79,27 @@
 
 				$listaMascotas = $mascota->unserializeMascotas($contenido);
 
-				//var_dump($listaMascotas[0]);
-				echo ('
-				<form action="../Negocio/acciones/editarMascota.php" method="POST">
+				$id = $_POST['idMascota'];
+				$nombre = $_POST['nombre'];
+				$especie = $_POST['especie'];
+				$raza = $_POST['raza'];
+				$edad = $_POST['edad'];
+				$genero = $_POST['genero'];
+				$idPropietario = $_POST['propietario'];
+				$fecha = $_POST['fecha'];
+
+				?>
+
+
+				<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
 					<div class="row">
 						<div class="col-xs-4">
 							<label for="nombre">Nombre: </label>
 						</div>
 						<div class="col-xs-4">
-							<input type="text" name="nombre" id="nombre" value="'.$listaMascotas[0]->getNombre().'">
-							<input type="hidden" name="idMascota" id="idMascota" value="'.$listaMascotas[0]->getID().'">
-							<input type="hidden" name="propietario" id="propietario" value="'.$listaMascotas[0]->getIdPropietario().'">
+							<input type="text" name="nombre" id="nombre" value="<?php echo ($listaMascotas[0]->getNombre()); ?>">
+							<input type="hidden" name="idMascota" id="idMascota" value="<?php echo ($listaMascotas[0]->getID()); ?>">
+							<input type="hidden" name="propietario" id="propietario" value="<?php echo ($listaMascotas[0]->getIdPropietario()); ?>">
 						</div>
 					</div>
 
@@ -98,7 +108,7 @@
 							<label for="especie">Especie: </label>
 						</div>
 						<div class="col-xs-4">
-							<input type="text" name="especie" id="especie" value="'.$listaMascotas[0]->getEspecie().'">
+							<input type="text" name="especie" id="especie" value="<?php echo ($listaMascotas[0]->getEspecie()); ?>">
 						</div>
 					</div>
 
@@ -107,7 +117,7 @@
 							<label for="raza">Raza: </label>
 						</div>
 						<div class="col-xs-4">
-							<input type="text" name="raza" id="raza" value="'.$listaMascotas[0]->getRaza().'">
+							<input type="text" name="raza" id="raza" value="<?php echo ($listaMascotas[0]->getRaza()); ?>">
 						</div>
 					</div>
 
@@ -116,7 +126,7 @@
 							<label for="edad">Edad: </label>
 						</div>
 						<div class="col-xs-4">
-							<input type="number" name="edad" id="edad" value="'.$listaMascotas[0]->getEdad().'">
+							<input type="number" name="edad" id="edad" value="<?php echo ($listaMascotas[0]->getEdad()); ?>">
 						</div>
 					</div>
 
@@ -125,7 +135,7 @@
 							<label for="genero">Genero: </label>
 						</div>
 						<div class="col-xs-4">
-							<select name="genero" id="genero" default="adad">							
+							<select name="genero" id="genero" default="adad">
 								<option value="" selected="true" disabled="disabled">Selecciona una opción</option>
 								<option value="Macho">Macho</option>
 								<option value="Hembra">Hembra</option>
@@ -138,7 +148,7 @@
 							<label for="fecha">Fecha de la última visita: </label>
 						</div>
 						<div class="col-xs-4">
-							<input type="datetime" name="fecha" id="fecha" value="'.$listaMascotas[0]->getFechaUltVisita().'">
+							<input type="datetime" name="fecha" id="fecha" value="<?php echo ($listaMascotas[0]->getFechaUltVisita()); ?>">
 						</div>
 					</div>
 
@@ -148,11 +158,6 @@
 						</div>
 					</div>
 				</form>
-					'
-				);
-
-				?>
-
 			</div>
 		</div>
 

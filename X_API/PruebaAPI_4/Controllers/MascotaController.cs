@@ -75,7 +75,8 @@ namespace PortalDelPeludo_API.Controllers
             return Ok(resultado);
         }
 
-        [HttpPut]
+        [HttpPost]
+        [Route("editar")]
         public IActionResult Edit(int id, string nombre, string especie, string raza, int edad, string genero,int idPropietario, string fechaUltimavisita)
         {            
             int resultado = 0;

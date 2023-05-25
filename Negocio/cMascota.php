@@ -33,11 +33,11 @@ class Mascota {
     function editarMascota($id,$nombre,$especie,$raza,$edad,$genero,$idPropietario,$fecha)
     {        
 
-        $rq = "http://localhost:5174/api/Mascota?id=".$id."&nombre=".$nombre."&especie=".$especie."&raza=".$raza."&edad=".$edad."&genero=".$genero."&idPropietario=".$idPropietario."&fechaUltimavisita=".$fecha."";
+        $rq = "http://localhost:5174/api/Mascota/editar?id=".$id."&nombre=".$nombre."&especie=".$especie."&raza=".$raza."&edad=".$edad."&genero=".$genero."&idPropietario=".$idPropietario."&fechaUltimavisita=".$fecha."";
 
         $rs = curl_init($rq);
 
-        curl_setopt($rs, CURLOPT_CUSTOMREQUEST, 'PUT');
+        curl_setopt($rs, CURLOPT_PUT, true);
         curl_setopt($rs, CURLOPT_RETURNTRANSFER, true);
 
         $response = curl_exec($rs);
