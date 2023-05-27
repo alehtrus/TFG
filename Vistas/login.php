@@ -40,28 +40,26 @@
     <div id="login">
         <?php
 
-        try
-        {
+        try {
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 require_once("../Negocio/cUsuario.php");
                 require_once("../Negocio/cPropietario.php");
-    
+
                 $usuario = new Usuario();
                 $perfil =  $usuario->verificar($_POST['usuario'], $_POST['clave']);
-    
+
                 if ($perfil['rol'] === "USR") {
                     session_start(); //inicia o reinicia una sesión
                     $_SESSION['usuario'] = $_POST['usuario'];
-    
+
                     $tmpProp = new Propietario();
                     $rq = "http://localhost:5174/api/Propietario?dni=" . $perfil['dni'];
                     $rq = file_get_contents($rq);
                     $rs = $tmpProp->unserializePropietarios($rq);
-    
-                    header("Location: owner.php?id=". $rs[0]->getID());
-    
+
+                    header("Location: owner.php?id=" . $rs[0]->getID());
                 } elseif ($perfil['rol'] === "VET") {
-    
+
                     session_start(); //inicia o reinicia una sesión
                     $_SESSION['usuario'] = $_POST['usuario'];
                     header("Location: med.php");
@@ -69,12 +67,11 @@
                     header("Location: login.php");
                 }
             }
-        }catch (Exception $ex)
-        {
+        } catch (Exception $ex) {
             print('petó');
         }
 
-        
+
         ?>
         <h3 class="text-center text-white pt-5">Portal del Peludo</h3>
         <div class="container">
@@ -91,6 +88,11 @@
                                 <label for="clave" class="text-info">Contraseña:</label><br>
                                 <input type="password" name="clave" id="clave" class="form-control">
                             </div>
+                            <?php
+                            if (isset($error)) {
+                                print("<div> No tienes acceso </div>");
+                            }
+                            ?>
                             <div class="form-group">
                                 <input type="submit" name="submit" class="btn btn-info btn-md" value="Iniciar Sesión">
                             </div>

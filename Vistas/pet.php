@@ -63,6 +63,11 @@
 			<div id="fh5co-work">
 				<?php
 
+				session_start(); // reanudamos la sesión
+				if (!isset($_SESSION['usuario'])) {
+					header("Location: login.php");
+				}
+
 				require_once('../Negocio/cMascota.php');
 				require_once('../Util/Util.php');
 
@@ -91,8 +96,8 @@
 					<p>' . $listaMascotas[0]->getNombre() . '</p>
 				</div>
 				<div class="col-xs-4 gestion">				
-					<a href="editPet.php?id='.$listaMascotas[0]->getId().'">Editar </a>|
-					<a href=""> Eliminar</a>
+					<a href="editPet.php?id=' . $listaMascotas[0]->getId() . '">Editar </a>|
+					<a href="../Negocio/acciones/deletePet.php?id=' . $listaMascotas[0]->getId() . '"> Eliminar</a>
 				</div>
 			</div>
 			<div class="row">
@@ -138,6 +143,9 @@
 			<div class="row">
 				<div class="col-xs-4">
 					<p><a href="visitsPet.php?id=' . $listaMascotas[0]->getId() . '">Visitas</a></p>			
+				</div>
+				<div class="col-xs-4">
+					<p><a onClick="history.go(-1)">Atrás</a></p>			
 				</div>
 			</div>
 					'
@@ -196,6 +204,9 @@
 			<div class="row">
 				<div class="col-xs-4">
 					<p><a href="visitsPet.php?id=' . $listaMascotas[0]->getId() . '">Visitas</a></p>			
+				</div>
+				<div class="col-xs-4">
+					<p><a onClick="history.go(-1)">Atrás</a></p>			
 				</div>
 			</div>
 					'

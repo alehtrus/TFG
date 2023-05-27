@@ -33,27 +33,32 @@
 	<script src="js/modernizr-2.6.2.min.js"></script>
 
 	<style>
-		.visita td{
+		.visita td {
 			width: 10%;
 			padding: 0px 15px;
 		}
-		.visita td:first-child{
+
+		.visita td:first-child {
 			width: 20%;
 			padding: 0px 15px;
 		}
-		.visita td:last-child{
+
+		.visita td:last-child {
 			width: 25%;
 			padding: 0px 15px;
 		}
-		.visita .nombreMascota{
+
+		.visita .nombreMascota {
 			width: 5%;
 			padding: 0px 15px;
 		}
-		.visita .nombreMedico{
+
+		.visita .nombreMedico {
 			width: 15%;
 			padding: 0px 15px;
 		}
-		.visita .motivo{
+
+		.visita .motivo {
 			width: 25%;
 			padding: 0px 15px;
 		}
@@ -143,6 +148,12 @@
 			<div id="fh5co-work">
 				<div class="row">
 					<?php
+
+					session_start(); // reanudamos la sesión
+					if (!isset($_SESSION['usuario'])) {
+						header("Location: login.php");
+					}
+
 					try {
 						require_once("../Negocio/cVisita.php");
 						require_once("../Util/Util.php");
@@ -151,7 +162,7 @@
 
 						$url = GET_VISITAS_MASCOTA . $idMascota;
 						$contenido = file_get_contents($url);
-						
+
 						if ($contenido != null && !empty($contenido)) {
 
 							$visita = new Visita();

@@ -63,6 +63,11 @@
 			<div id="fh5co-work">
 				<?php
 
+				session_start(); // reanudamos la sesión
+				if (!isset($_SESSION['usuario'])) {
+					header("Location: login.php");
+				}
+
 				require_once('../Negocio/cMascota.php');
 				require_once('../Util/Util.php');
 
@@ -79,19 +84,28 @@
 
 				$listaMascotas = $mascota->unserializeMascotas($contenido);
 
-				$id = $_POST['idMascota'];
-				$nombre = $_POST['nombre'];
-				$especie = $_POST['especie'];
-				$raza = $_POST['raza'];
-				$edad = $_POST['edad'];
-				$genero = $_POST['genero'];
-				$idPropietario = $_POST['propietario'];
-				$fecha = $_POST['fecha'];
+				if (isset($_POST['idMascota'])) {
+					$id = $_POST['idMascota'];
+					$nombre = $_POST['nombre'];
+					$especie = $_POST['especie'];
+					$raza = $_POST['raza'];
+					$edad = $_POST['edad'];
+					$genero = $_POST['genero'];
+					$idPropietario = $_POST['propietario'];
+					$fecha = $_POST['fecha'];
+					$fecha = formatearFecha($fecha);
+
+					$rs = $mascota->editarMascota($id, $nombre, $especie, $raza, $edad, $genero, $idPropietario, $fecha);
+					var_dump($rs);
+					if ($rs == true) {
+						header('Location: pet.php?a=v&id=' . $listaMascotas[0]->getID());
+					}
+				}
+
 
 				?>
 
-
-				<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+				<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>?id=<?php echo ($listaMascotas[0]->getID()); ?>" method="POST">
 					<div class="row">
 						<div class="col-xs-4">
 							<label for="nombre">Nombre: </label>

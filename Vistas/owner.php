@@ -63,6 +63,12 @@
 		<div class="container-wrap">
 			<div id="fh5co-work">
 				<?php
+
+				session_start(); // reanudamos la sesión
+				if (!isset($_SESSION['usuario'])) {
+					header("Location: login.php");
+				}
+
 				require_once('../Negocio/cMascota.php');
 				require_once('../Util/Util.php');
 
@@ -71,7 +77,7 @@
 				ini_set('display_errors', 'On');
 				ini_set('html_errors', 0);
 
-				$url = GET_MASCOTAS_POR_PROPIETARIO. $idOwner ;
+				$url = GET_MASCOTAS_POR_PROPIETARIO . $idOwner;
 				$contenido = file_get_contents($url);
 
 				//var_dump($contenido);

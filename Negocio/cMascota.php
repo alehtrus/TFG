@@ -1,6 +1,7 @@
 <?php
 
-class Mascota {
+class Mascota
+{
 
     private string $id;
     private string $nombre;
@@ -11,10 +12,9 @@ class Mascota {
     private string $id_propietario;
     private string $fecha_ultima_visita;
 
-    
+
     function __construct()
     {
-        
     }
 
     function init($id, $nombre, $especie, $raza, $edad, $genero, $id_propietario, $fecha_ultima_visita)
@@ -27,27 +27,24 @@ class Mascota {
         $this->genero = $genero;
         $this->id_propietario = $id_propietario;
         $this->fecha_ultima_visita = $fecha_ultima_visita;
-
     }
 
-    function editarMascota($id,$nombre,$especie,$raza,$edad,$genero,$idPropietario,$fecha)
-    {        
+    function editarMascota($id, $nombre, $especie, $raza, $edad, $genero, $idPropietario, $fecha)
+    {
+        require_once('../AccesoDatos/AD_Mascota.php');
+        $mascota = new MascotasAccesoDatos();
+        $rs = $mascota->editarMascota($id, $nombre, $especie, $raza, $edad, $genero, $idPropietario, $fecha);
 
-        $rq = "http://localhost:5174/api/Mascota/editar?id=".$id."&nombre=".$nombre."&especie=".$especie."&raza=".$raza."&edad=".$edad."&genero=".$genero."&idPropietario=".$idPropietario."&fechaUltimavisita=".$fecha."";
+        return $rs;
+    }
 
-        $rs = curl_init($rq);
+    function borrarMascota($id)
+    {
+        require_once('../../AccesoDatos/AD_Mascota.php');
+        $mascota = new MascotasAccesoDatos();
+        $rs = $mascota->borrarMascota($id);
 
-        curl_setopt($rs, CURLOPT_PUT, true);
-        curl_setopt($rs, CURLOPT_RETURNTRANSFER, true);
-
-        $response = curl_exec($rs);
-        if(curl_errno($rs)) {
-            $error_message = curl_error($rs);
-            print($error_message);
-        } else {
-            print($response);
-            curl_close($rs);
-        }
+        return $rs;
     }
 
 
@@ -56,31 +53,27 @@ class Mascota {
         $fichero = json_decode($fichero);
         $lista_mascotas = [];
 
-        foreach($fichero as $mascota){
-           $masct  = new Mascota();
-           $masct ->init($mascota->id, $mascota->nombre, $mascota->especie, $mascota->raza, $mascota->edad, $mascota->genero, $mascota->id_propietario, $mascota->fecha_ultima_visita);
+        foreach ($fichero as $mascota) {
+            $masct  = new Mascota();
+            $masct->init($mascota->id, $mascota->nombre, $mascota->especie, $mascota->raza, $mascota->edad, $mascota->genero, $mascota->id_propietario, $mascota->fecha_ultima_visita);
 
-           $lista_mascotas[] = $masct ;
-
+            $lista_mascotas[] = $masct;
         }
 
         return $lista_mascotas;
-
     }
 
     function pintarMascotas($lista_mascotas)
     {
         echo ('<div class="row">');
-        foreach($lista_mascotas as $mascota)
-        {
-            echo
-            ('            
+        foreach ($lista_mascotas as $mascota) {
+            echo ('            
             <div class="col-md-4">            
                 <div class="fh5co-blog animate-box">
                     <div class="blog-text">
-                        <h3><a href="#">'.$mascota->getNombre().'</a></h3>
-                        <p class="linksMascotas"><a href="pet.php?id='.$mascota->getId().'">Perfil</a></p>
-                        <p class="linksMascotas"><a href="visitsPet.php?id='.$mascota->getId().'">Visitas</a></p>
+                        <h3><a href="#">' . $mascota->getNombre() . '</a></h3>
+                        <p class="linksMascotas"><a href="pet.php?id=' . $mascota->getId() . '">Perfil</a></p>
+                        <p class="linksMascotas"><a href="visitsPet.php?id=' . $mascota->getId() . '">Visitas</a></p>
                     </div>
                 </div>
             </div>
@@ -88,22 +81,19 @@ class Mascota {
             ');
         }
         echo ('</div>');
-
     }
 
     function pintarMascotasMeds($lista_mascotas)
     {
         echo ('<div class="row">');
-        foreach($lista_mascotas as $mascota)
-        {
-            echo
-            ('            
+        foreach ($lista_mascotas as $mascota) {
+            echo ('            
             <div class="col-md-4">            
                 <div class="fh5co-blog animate-box">
                     <div class="blog-text">
-                        <h3><a href="#">'.$mascota->getNombre().'</a></h3>
-                        <p class="linksMascotas"><a href="pet.php?id='.$mascota->getId().'&a=v">Perfil</a></p>
-                        <p class="linksMascotas"><a href="visitsPet.php?id='.$mascota->getId().'&a=v">Visitas</a></p>
+                        <h3><a href="#">' . $mascota->getNombre() . '</a></h3>
+                        <p class="linksMascotas"><a href="pet.php?id=' . $mascota->getId() . '&a=v">Perfil</a></p>
+                        <p class="linksMascotas"><a href="visitsPet.php?id=' . $mascota->getId() . '&a=v">Visitas</a></p>
                     </div>
                 </div>
             </div>
@@ -111,15 +101,16 @@ class Mascota {
             ');
         }
         echo ('</div>');
-
     }
 
 
-    function getId(){
+    function getId()
+    {
         return $this->id;
     }
 
-    function setId($id){
+    function setId($id)
+    {
         return $this->id = $id;
     }
 
@@ -133,11 +124,13 @@ class Mascota {
         $this->nombre = $nombre;
     }
 
-    function getEspecie(){
+    function getEspecie()
+    {
         return $this->especie;
     }
 
-    function setEspecie($especie){
+    function setEspecie($especie)
+    {
         return $this->especie = $especie;
     }
 
@@ -151,11 +144,13 @@ class Mascota {
         $this->raza = $raza;
     }
 
-    function getEdad(){
+    function getEdad()
+    {
         return $this->edad;
     }
 
-    function setEdad($edad){
+    function setEdad($edad)
+    {
         return $this->edad = $edad;
     }
 
@@ -169,11 +164,13 @@ class Mascota {
         $this->genero = $genero;
     }
 
-    function getIdPropietario(){
+    function getIdPropietario()
+    {
         return $this->id_propietario;
     }
 
-    function setIdPropietario($id_propietario){
+    function setIdPropietario($id_propietario)
+    {
         return $this->id_propietario = $id_propietario;
     }
 
@@ -186,6 +183,4 @@ class Mascota {
     {
         $this->fecha_ultima_visita = $fecha_ultima_visita;
     }
-
-
 }

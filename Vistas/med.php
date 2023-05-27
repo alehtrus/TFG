@@ -63,10 +63,12 @@
 		<div class="container-wrap">
 			<div id="fh5co-work">
 				<?php
+
 				session_start(); // reanudamos la sesión
 				if (!isset($_SESSION['usuario'])) {
 					header("Location: index.php");
 				}
+				
 				echo ("Bienvenido " . $_SESSION['usuario']);
 
 				require_once('../Negocio/cMascota.php');

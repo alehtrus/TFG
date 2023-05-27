@@ -1,6 +1,6 @@
 <?php
 
-require_once('../../AccesoDatos/editarMascota.php');
+require_once('../../AccesoDatos/AD_Mascota.php');
 require_once('../../Util/Util.php');
 
 
@@ -17,7 +17,8 @@ $fecha = formatearFecha($fecha);
 
 
 $mascota = new MascotasAccesoDatos();
-$mascota->editarMascota($id,$nombre,$especie,$raza,$edad,$genero,$idPropietario,$fecha);
+$rs = $mascota->editarMascota($id,$nombre,$especie,$raza,$edad,$genero,$idPropietario,$fecha);
+var_dump($rs);
 
 //header('Location: ../Vistas/torneosVista.php');
 /*
