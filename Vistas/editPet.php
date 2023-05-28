@@ -79,8 +79,7 @@
 				$url = GET_MASCOTA . $idMascota;
 				$contenido = file_get_contents($url);
 
-				$mascota = new Mascota();
-				$mascota->unserializeMascotas($contenido);
+				$mascota = new Mascota();				
 
 				$listaMascotas = $mascota->unserializeMascotas($contenido);
 

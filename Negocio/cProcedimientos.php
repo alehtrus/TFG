@@ -2,6 +2,7 @@
 
 class Procedimiento {
 
+    private int $idProcedimiento;
     private string $nombre;
     private string $descripcion;
 
@@ -11,22 +12,26 @@ class Procedimiento {
         
     }
 
-    function init($nombre, $descripcion)
+    function init($idProcedimiento, $nombre, $descripcion)
     {
+        $this->idProcedimiento = $idProcedimiento;
         $this->nombre = $nombre;
         $this->descripcion = $descripcion;
 
     }
 
 
-    function unserializeProcedimientos($fichero)
+    function unserializeProcedimientos()
     {
+        $url = GET_PROCEDIMIENTOS;
+        $fichero = file_get_contents($url);
+
         $fichero = json_decode($fichero);
         $lista_procedimientos = [];
 
         foreach($fichero as $procedimiento){
            $procd = new Procedimiento();
-           $procd->init($procedimiento->nombre,$procedimiento->descripcion);
+           $procd->init($procedimiento->id ,$procedimiento->nombre ,$procedimiento->descripcion);
 
            $lista_procedimientos[] = $procd;
 
@@ -58,6 +63,16 @@ class Procedimiento {
 
     }
 
+
+    function getIdProcedimiento()
+    {
+        return $this->idProcedimiento;
+    }
+
+    function setIdProcedimiento($idProcedimiento)
+    {
+        $this->idProcedimiento = $idProcedimiento;
+    }
 
     function getNombre()
     {

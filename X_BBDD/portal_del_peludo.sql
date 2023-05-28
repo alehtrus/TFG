@@ -41,7 +41,7 @@ CREATE TABLE veterinarios (
 
 CREATE TABLE medicos (
   id INT PRIMARY KEY,
-  id_veterinario int not null,
+  id_veterinario int not null, /* Hace referencia al Hospital veterinarios*/
   DNI varchar(10) not null,
   nombre VARCHAR(255) NOT NULL,
   numero_colegiado int unique,
@@ -220,31 +220,3 @@ VALUES
 ('2023-04-29 08:00:00', 11, 36, 3, 'Tratamiento contra parásitos');
 
 
-
-
-/*
--- Insercion de CITAS_MASCOTAS
-
-INSERT INTO CITAS_MASCOTAS (id_cita, id_mascota)
-VALUES 
-(1, 5),
-(2, 12),
-(3, 17),
-(4, 24),
-(5, 8),
-(6, 32),
-(7, 21),
-(8, 15),
-(9, 28),
-(10, 3),
-(11, 9),
-(12, 18),
-(13, 23),
-(14, 30),
-(15, 2),
-(16, 10),
-(17, 26),
-(18, 33),
-(19, 14),
-(20, 31);
-*/

@@ -167,13 +167,22 @@
 
 							$visita = new Visita();
 							$listaVisitas = $visita->unserializeVisitas($contenido);
-							$visita->pintarVisitas($listaVisitas);
+
+							if(isset($_GET['a']) && $_GET['a']== 'v')
+							{
+								$visita->pintarVisitasMed($listaVisitas);
+							}else
+							{
+								$visita->pintarVisitas($listaVisitas);
+							}
+							
 						}
 					} catch (Exception $ex) {
 						echo ("Mensaje de error: " . $ex->getMessage());
 					}
 
 					?>
+						
 				</div>
 			</div>
 		</div>

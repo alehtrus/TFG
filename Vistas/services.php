@@ -122,20 +122,12 @@
 					require_once("../Util/Util.php");
 
 					//$cosa = error_reporting(E_ALL ^ E_WARNING);
-					set_error_handler('customErrorHandle()');
-					
+					//set_error_handler('customErrorHandle()');
 
-					$url = GET_PROCEDIMIENTOS;
-					$contenido = file_get_contents($url);
-					//var_dump($contenido);
-					if ($contenido != null && !empty($contenido)) {
+					$procedimiento = new Procedimiento();
 
-						$procedimiento = new Procedimiento();
-						//var_dump($contenido);
-						$listaProcedimientos = $procedimiento->unserializeProcedimientos($contenido);
-						$procedimiento->pintarProcedimientos($listaProcedimientos);
-					}
-
+					$listaProcedimientos = $procedimiento->unserializeProcedimientos();
+					$procedimiento->pintarProcedimientos($listaProcedimientos);
 
 					?>
 				</div>

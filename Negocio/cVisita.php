@@ -8,23 +8,22 @@ class Visita
     private int $id_mascota;
     private string $nombreMedico;
     private string $motivo;
-    private int $idProcedimiento;
+    private int $procedimiento_id;
     private string $nombreProcedimiento;
     private string $descripcion;
-    
+
     function __construct()
     {
-        
     }
 
-    function init($idCitas, $fecha, $id_mascota, $nombreMedico, $motivo, $idProcedimiento, $nombreProcedimiento, $descripcion)
+    function init($idCitas, $fecha, $id_mascota, $nombreMedico, $motivo, $procedimiento_id, $nombreProcedimiento, $descripcion)
     {
         $this->idCitas = $idCitas;
         $this->fecha = $fecha;
         $this->id_mascota = $id_mascota;
         $this->nombreMedico = $nombreMedico;
         $this->motivo = $motivo;
-        $this->idProcedimiento = $idProcedimiento;
+        $this->procedimiento_id = $procedimiento_id;
         $this->nombreProcedimiento = $nombreProcedimiento;
         $this->descripcion = $descripcion;
     }
@@ -34,34 +33,99 @@ class Visita
         $fichero = json_decode($fichero);
         $lista_visitas = [];
 
-        foreach($fichero as $visitas){
-           $vst  = new Visita();
-           $vst->init($visitas->idCitas, $visitas->fecha, $visitas->id_mascota, $visitas->nombreMedico, $visitas->motivo, $visitas->idProcedimiento, $visitas->nombreProcedimiento, $visitas->descripcion);
+        foreach ($fichero as $visitas) {
+            $vst  = new Visita();
+            $vst->init($visitas->idCitas, $visitas->fecha, $visitas->id_mascota, $visitas->nombreMedico, $visitas->motivo, $visitas->procedimiento_id, $visitas->nombreProcedimiento, $visitas->descripcion);
 
-           $lista_visitas[] = $visitas;
-
+            $lista_visitas[] = $vst;
         }
 
         return $lista_visitas;
-
     }
 
-    function pintarVisitas($lista_visitas)
-    {        
+    function pintarVisitasMed($lista_visitas)
+    {
         echo ('<div class="row">');
-        foreach($lista_visitas as $visita)
-        {
-            echo
-            ('            
+        $numVisitas = count($lista_visitas);
+        echo ('<h3>Número de visitas: ' . $numVisitas . '</h3>');
+        foreach ($lista_visitas as $visita) {
+            echo ('            
             <div class="col-md-12">            
                 <div class="fh5co-blog animate-box">
                     <div class="blog-text">
                     <table class="visita">
                     <tr>
-                        <td class="fecha">'.$visita->fecha.'</td>
-                        <td class"nombreMedico">'.$visita->nombreMedico.'</td>
-                        <td class="motivo">'.$visita->motivo.'</td>
-                        <td class="procedimiento">'.$visita->nombreProcedimiento.'</td>
+                        <td class="fecha">' . $visita->getFecha() . '</td>
+                        <td class"nombreMedico">' . $visita->getNombreMedico() . '</td>
+                        <td class="motivo">' . $visita->getMotivo() . '</td>
+                        <td class="procedimiento">' . $visita->getNombreProcedimiento() . '</td>
+                        <td class="eliminar"><a href="/tfg/Negocio/acciones/deleteCita.php?id='.$visita->getIdMascota().'&idCita='.$visita->getId().'">Eliminar</a></td>
+                    </tr>
+                </table>
+                    </div>
+                </div>
+            </div>           
+
+            ');
+        }
+
+        $idMascota = $_GET['id'];
+
+        echo ('
+
+        <div class="col-md-12">
+			<div class="fh5co-blog animate-box">
+				<div class="blog-text">
+					<a href="newVisit.php?id=' . $idMascota . '">
+                        <table class="visita">
+                            <tr>
+                                <td class="nuevaVista"> Nueva visita +</td>
+                            </tr>
+                        </table>
+                    </a>
+				</div>
+			</div>
+            <div><a href="med.php">Atrás</a></div>
+		</div>
+        
+        ');
+        echo ('</div>');
+    }
+
+    function insertarVisita($fecha, $idProcedimiento, $idMascota, $idMedico, $motivo)
+    {
+        require_once('../../AccesoDatos/AD_Cita.php');
+        $mascota = new CitaAccesoDatos();
+        $rs = $mascota->insertarCita($fecha, $idProcedimiento, $idMascota, $idMedico, $motivo);
+
+        return $rs;
+    }
+
+    function borrarCita($id)
+    {
+        require_once('../../AccesoDatos/AD_Cita.php');
+        $cita = new CitaAccesoDatos();
+        $rs = $cita->borrarCita($id);
+
+        return $rs;
+    }
+
+    function pintarVisitas($lista_visitas)
+    {
+        echo ('<div class="row">');
+        $numVisitas = count($lista_visitas);
+        echo ('<h3>Número de visitas: ' . $numVisitas . '</h3>');
+        foreach ($lista_visitas as $visita) {
+            echo ('            
+            <div class="col-md-12">            
+                <div class="fh5co-blog animate-box">
+                    <div class="blog-text">
+                    <table class="visita">
+                    <tr>
+                    <td class="fecha">' . $visita->getFecha() . '</td>
+                    <td class"nombreMedico">' . $visita->getNombreMedico() . '</td>
+                    <td class="motivo">' . $visita->getMotivo() . '</td>
+                    <td class="procedimiento">' . $visita->getNombreProcedimiento() . '</td>
                     </tr>
                 </table>
                     </div>
@@ -70,8 +134,13 @@ class Visita
 
             ');
         }
-        echo ('</div>');
 
+        echo ('
+            <div class="col-md-12">
+                <div><a onClick="history.go(-1)">Atrás</a></div> 
+            </div>
+        ');
+        echo ('</div>');
     }
 
     function getId()
@@ -94,12 +163,12 @@ class Visita
         $this->fecha = $fecha;
     }
 
-    function getNombreMascota()
+    function getIdMascota()
     {
         return $this->id_mascota;
     }
 
-    function setNombreMascota($id_mascota)
+    function setIdMascota($id_mascota)
     {
         $this->id_mascota = $id_mascota;
     }
@@ -126,12 +195,12 @@ class Visita
 
     function getProcedimientoID()
     {
-        return $this->idProcedimiento;
+        return $this->procedimiento_id;
     }
 
-    function setProcedimientoID($idProcedimiento)
+    function setProcedimientoID($procedimiento_id)
     {
-        $this->idProcedimiento = $idProcedimiento;
+        $this->procedimiento_id = $procedimiento_id;
     }
 
     function getNombreProcedimiento()
@@ -153,5 +222,4 @@ class Visita
     {
         $this->descripcion = $descripcion;
     }
-
 }

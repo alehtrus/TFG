@@ -86,6 +86,10 @@
 					$mascota = new Mascota();
 					//var_dump($contenido);
 					$listaMascotas = $mascota->unserializeMascotas($contenido);
+
+					$numeMascotas = count($listaMascotas);
+					echo('<h3>Tienes registrados '. $numeMascotas.' peludos!</h3>');
+
 					$mascota->pintarMascotas($listaMascotas);
 				}
 				?>

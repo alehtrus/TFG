@@ -49,14 +49,22 @@ namespace PortalDelPeludo_API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Insert(Model.Citas model)
+        public IActionResult Insert(DateTime fecha, int procedimiento_id, int id_mascota, int id_medico, string motivo)
         {
             int resultado = 0;
             using (var db = new MySqlConnection(_connection))
             {
-                string query = "insert into citas (id, fecha, procedimiento_id, id_mascota, id_medico, motivo) " +
-                    "values(@id, @fecha, @procedimiento_id, @id_mascota, @id_medico, @motivo)";
-                resultado = db.Execute(query, model);
+
+                var cita = new Citas();
+                cita.fecha = fecha;
+                cita.procedimiento_id = procedimiento_id;
+                cita.id_mascota = id_mascota;
+                cita.id_medico = id_medico;
+                cita.motivo = motivo;
+
+                string query = "insert into citas (fecha, procedimiento_id, id_mascota, id_medico, motivo) " +
+                    "values(@fecha, @procedimiento_id, @id_mascota, @id_medico, @motivo)";
+                resultado = db.Execute(query, cita);
             }
 
             return Ok(resultado);
