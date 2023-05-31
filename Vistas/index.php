@@ -33,10 +33,7 @@
 
 
 	</head>
-	<body>
-		
-	<div class="fh5co-loader"></div>
-	
+	<body>	
 	<div id="page">
 	<nav class="fh5co-nav" role="navigation">
 		<div class="container-wrap">
@@ -52,7 +49,23 @@
 							<li><a href="vets.php">Veterinarios</a></li>
 							<li><a href="about.php">¿Qué somos?</a></li>
 							<li><a href="contact.php">Contacto</a></li>
-							<li><a href="login.php">Iniciar sesión</a></li>
+							<?php
+								session_start(); // reanudamos la sesión
+								if(isset($_SESSION['usuario']))
+								{
+									if($_SESSION['rol'] == 'VET')
+									{
+										echo('<li><a href="med.php">Animales</a></li>');
+									}else
+									{
+										echo('<li><a href="med.php?id='.$_SESSION['id'].'">Mis mascotas</a></li>');
+									}
+								}else
+								{
+									echo('<li><a href="login.php">Iniciar sesión</a></li>');
+								}
+							?>
+							
 						</ul>
 					</div>
 				</div>
@@ -169,32 +182,42 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-12 animate-box">
-						<a href="#" class="blog-post">
-							<span class="img" style="background-image: url(images/blog-2.jpg);"></span>
-							<div class="desc">
-								<h3>Titular</h3>
-								<span class="cat">Enlace?</span>
-							</div>
-						</a>
+					<!-- Noticias aquí -->
+					<?php
+						require_once("../Negocio/cNoticia.php");
+						$new = new Noticia();
+						$listaNews = $new->unserializeNoticias();
+						$new->pintarNoticias($listaNews);
+					?>
+				</div>
+				<!-- Terminan las noticias -->
+			</div>
+		</div>
+		<!-- Animales en adopcion -->								
+		<div id="fh5co-blog" class="blog-flex">			
+			<div class="blog-entry fh5co-light-grey">
+				<div class="row animate-box">
+					<div class="col-md-12">
+						<h2>Últimos posts</h2>
 					</div>
-					<div class="col-md-12 animate-box">
-						<a href="#" class="blog-post">
-							<span class="img" style="background-image: url(images/blog-1.jpg);"></span>
-							<div class="desc">
-								<h3>Titular</h3>
-								<span class="cat">Enlace?</span>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-12 animate-box">
-						<a href="#" class="blog-post">
-							<span class="img" style="background-image: url(images/blog-3.jpg);"></span>
-							<div class="desc">
-								<h3>Titular</h3>
-								<span class="cat">Enlace?</span>
-							</div>
-						</a>
+				</div>
+				<div class="row">
+					<!-- Animiales aquí -->
+					<?php
+						//require_once("../Negocio/cNoticia.php");
+						//$new = new Noticia();
+						//$listaNews = $new->unserializeNoticias();
+						//$new->pintarNoticias($listaNews);
+					?>
+				</div>
+				<!-- Terminan las animales -->
+			</div>
+			<div class="featured-blog" >
+				<div class="desc-t">
+					<div class="desc-tc">
+						
+						<h3><a href="#">Animales en adopcion</a></h3>
+						
 					</div>
 				</div>
 			</div>
@@ -208,7 +231,9 @@
 				<div class="col-md-3 col-md-push-1">
 					<h4>Últimos posts</h4>
 					<ul class="fh5co-footer-links">
-						<li><a href="#">Título de los últimos posts con un for (4)</a></li>
+						<?php
+						$new->pintarTitulosNoticias($listaNews);
+						?>
 					</ul>
 				</div>
 

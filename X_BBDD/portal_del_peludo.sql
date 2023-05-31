@@ -51,7 +51,7 @@ CREATE TABLE medicos (
 );
 
 CREATE TABLE mascotas (
-  id INT PRIMARY KEY,
+  id INT PRIMARY KEY auto_increment,
   nombre VARCHAR(255) NOT NULL,
   especie VARCHAR(255) NOT NULL,
   raza VARCHAR(255),

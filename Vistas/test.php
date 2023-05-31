@@ -23,11 +23,11 @@
     //$b = $a->unserializeProcedimientos();
     //var_dump($b[0]);
     //echo $b[0]->getIdProcedimiento();
-    $a = new Medico();
-    $b = $a->unserializeMedicos();
-    var_dump($b);
+    //$a = new Medico();
+    //$b = $a->unserializeMedicos();
+    //var_dump($b);
 
-    //$a = new Usuario();
+    $a = new Usuario();
     //$a->insertarUsuario("45389640C", "12345678", "vet");
     //$a->insertarUsuario("60389640C", "12345678", "usr");
     //$a->verificar("18516119S","contraseña");
@@ -46,6 +46,7 @@
     $a->insertarUsuario('10087273W', 'contraseña', 'USR');
     $a->insertarUsuario('84604555K', 'contraseña', 'ADMIN');
     */
+    
 
 
     /*

@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\API_PortalDelPaciente-R.props" />
+</Project>

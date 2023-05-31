@@ -11,7 +11,7 @@ class CitaAccesoDatos
     {
         $conexion = getConexion();
 
-        $consulta = mysqli_prepare( $conexion, 'INSERT CITAS (fecha, procedimiento_id, id_mascota, id_medico, motivo) VALUES (?, ?, ?, ?, ?)');
+        $consulta = mysqli_prepare( $conexion, 'INSERT into CITAS (fecha, procedimiento_id, id_mascota, id_medico, motivo) VALUES (?, ?, ?, ?, ?)');
 
         $fecha = mysqli_real_escape_string($conexion, $fecha);
         $idProcedimiento = mysqli_real_escape_string($conexion, $idProcedimiento);

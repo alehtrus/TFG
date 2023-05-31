@@ -29,6 +29,15 @@ class Mascota
         $this->fecha_ultima_visita = $fecha_ultima_visita;
     }
 
+    function insertarMascota($nombre, $especie, $raza, $edad, $genero, $idPropietario, $fecha)
+    {
+        require_once('../../AccesoDatos/AD_Mascota.php');
+        $mascota = new MascotasAccesoDatos();
+        $rs = $mascota->insertarMascota($nombre, $especie, $raza, $edad, $genero, $idPropietario, $fecha);
+
+        return $rs;
+    }
+
     function editarMascota($id, $nombre, $especie, $raza, $edad, $genero, $idPropietario, $fecha)
     {
         require_once('../AccesoDatos/AD_Mascota.php');
@@ -80,6 +89,18 @@ class Mascota
 
             ');
         }
+            echo('
+            
+            <div class="col-md-4">            
+            <div class="fh5co-blog animate-box">
+                <div class="blog-text">
+                    <h4><a href="newPet.php?id='.$mascota->getIdPropietario().'">Agregar a un peludito nuevo +</a></h4>                    
+                </div>
+            </div>
+        </div>
+
+            ');
+
         echo ('</div>');
     }
 

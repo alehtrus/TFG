@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33712.159
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API_PortalDelPaciente-R", "API_PortalDelPaciente-R.csproj", "{3784285D-1D4C-47C2-AAD0-BA4ECBE6ED1E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3784285D-1D4C-47C2-AAD0-BA4ECBE6ED1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3784285D-1D4C-47C2-AAD0-BA4ECBE6ED1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3784285D-1D4C-47C2-AAD0-BA4ECBE6ED1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3784285D-1D4C-47C2-AAD0-BA4ECBE6ED1E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5A3DECA3-B306-4685-B779-BFD3487924EE}
+	EndGlobalSection
+EndGlobal

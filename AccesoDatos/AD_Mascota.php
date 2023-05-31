@@ -7,6 +7,29 @@ class MascotasAccesoDatos
         
     }
 
+    function insertarMascota($nombre, $especie, $raza, $edad, $genero, $idPropietario, $fecha)
+    {
+        $conexion = getConexion();
+
+        $consulta = mysqli_prepare( $conexion, 'INSERT into mascotas (nombre, especie, raza, edad, genero, id_propietario, fecha_ultima_visita) VALUES (?, ?, ?, ?, ?, ?, ?)');
+
+        $nombre = mysqli_real_escape_string($conexion, $nombre);
+        $especie = mysqli_real_escape_string($conexion, $especie);
+        $raza = mysqli_real_escape_string($conexion, $raza);
+        $edad = mysqli_real_escape_string($conexion, $edad);
+        $genero = mysqli_real_escape_string($conexion, $genero);
+        $idPropietario = mysqli_real_escape_string($conexion, $idPropietario);
+        $fecha = mysqli_real_escape_string($conexion, $fecha);
+        
+
+        $consulta->bind_param('sssisis',$nombre, $especie, $raza, $edad, $genero, $idPropietario, $fecha);
+
+        $rs = $consulta->execute();        
+
+        return $rs;
+
+    }
+
     function editarMascota($id, $nombre, $especie, $raza, $edad, $genero, $idPropietario, $fecha)
     {
         $conexion = getConexion();
