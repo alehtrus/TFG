@@ -84,7 +84,7 @@
                             <label for="fecha">Fecha de la cita: </label>
                         </div>
                         <div class="col-xs-4">
-                            <input type="datetime-local" name="fecha" id="fecha">
+                            <input type="datetime-local" name="fecha" id="fecha" required>
                             <input type="hidden" name="idMascota" id="idMascota" value="<?php echo ($idMascota); ?>">
                         </div>
                     </div>
@@ -94,7 +94,7 @@
                             <label for="medico">Médico: </label>                            
                         </div>
                         <div class="col-xs-4">
-                            <select name="medico" id="medico">
+                            <select name="medico" id="medico" required>
                                 <option selected="true" disabled="disables">Selecciona un médico</option>
                                 <?php
                                 
@@ -117,7 +117,7 @@
                             <label for="motivo">Motivo: </label>
                         </div>
                         <div class="col-xs-4">
-                            <textarea name="motivo" id="motivo" cols="60" rows="3"></textarea>
+                            <textarea name="motivo" id="motivo" cols="60" rows="3" required></textarea>
                         </div>
                     </div>
 
@@ -127,7 +127,7 @@
                         </div>
                         <div class="col-xs-4">
                             
-                            <select name="procedimiento" id="procedimiento" onchange="mostrarValorSeleccionado()">
+                            <select name="procedimiento" id="procedimiento" onchange="mostrarValorSeleccionado()" required>
                                 <option selected="true" disabled="disables" >Selecciona un procedimiento</option>
                                 <?php
                                 require_once('../Negocio/cProcedimientos.php');
@@ -163,7 +163,7 @@
                             <label for="descripcion">Descripición: </label>
                         </div>
                         <div class="col-xs-4">
-                            <textarea name="descripcion" id="descripcion" cols="60" rows="5" disabled></textarea>
+                            <textarea name="descripcion" id="descripcion" cols="60" rows="5" disabled required></textarea>
                         </div>
                     </div>
 

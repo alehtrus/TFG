@@ -14,6 +14,12 @@ $fecha = $_POST['fecha'];
 //echo($nombre ." ". $especie." ". $raza." ". $edad." ". $genero." ". $idPropietario." ". $fecha);
 
 $tmpMascota = new Mascota();
-$tmpMascota->insertarMascota($nombre, $especie, $raza, $edad, $genero, $idPropietario, $fecha);
+$rs = $tmpMascota->insertarMascota($nombre, $especie, $raza, $edad, $genero, $idPropietario, $fecha);
 
-header("Location: /tfg/Vistas/owner.php?id=".$idPropietario);
+if($rs){
+    header("Location: /tfg/Vistas/owner.php?id=".$idPropietario);
+}else{
+    header('Location: error.html');
+}
+
+

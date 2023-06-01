@@ -9,9 +9,15 @@ var_dump($id);
 var_dump($idCita);
 
 $v = new Visita();
-$v->borrarCita($idCita);
+$rs= $v->borrarCita($idCita);
 
-header('Location: /tfg/Vistas/visitsPet.php?id='.$id);
+if($rs){
+    header('Location: /tfg/Vistas/visitsPet.php?id='.$id);
+}else{
+    header('Location: error.html');
+}
+
+
 
 
 

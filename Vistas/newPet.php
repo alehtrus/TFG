@@ -81,7 +81,7 @@
 							<label for="nombre">Nombre: </label>
 						</div>
 						<div class="col-xs-4">
-							<input type="text" name="nombre" id="nombre" >
+							<input type="text" name="nombre" id="nombre" required>
 							<input type="hidden" name="propietario" id="propietario" value="<?php echo($idOwner);?>">
 						</div>
 					</div>
@@ -91,7 +91,7 @@
 							<label for="especie">Especie: </label>
 						</div>
 						<div class="col-xs-4">
-							<input type="text" name="especie" id="especie" >
+							<input type="text" name="especie" id="especie" required>
 						</div>
 					</div>
 
@@ -100,7 +100,7 @@
 							<label for="raza">Raza: </label>
 						</div>
 						<div class="col-xs-4">
-							<input type="text" name="raza" id="raza" >
+							<input type="text" name="raza" id="raza" required>
 						</div>
 					</div>
 
@@ -109,7 +109,7 @@
 							<label for="edad">Edad: </label>
 						</div>
 						<div class="col-xs-4">
-							<input type="number" name="edad" id="edad" >
+							<input type="number" name="edad" id="edad" required>
 						</div>
 					</div>
 
@@ -118,7 +118,7 @@
 							<label for="genero">Genero: </label>
 						</div>
 						<div class="col-xs-4">
-							<select name="genero" id="genero" default="adad">
+							<select name="genero" id="genero" required>
 								<option value="" selected="true" disabled="disabled">Selecciona una opción</option>
 								<option value="Macho">Macho</option>
 								<option value="Hembra">Hembra</option>

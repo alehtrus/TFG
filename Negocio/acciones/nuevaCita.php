@@ -12,9 +12,11 @@ $motivo = $_POST['motivo'];
 
 var_dump($idProcedimiento);
 
-$tmpVisita->insertarVisita($fecha, $idProcedimiento, $idMascota, $idMedico, $motivo);
+$rs = $tmpVisita->insertarVisita($fecha, $idProcedimiento, $idMascota, $idMedico, $motivo);
 
-header("Location: /tfg/Vistas/visitsPet.php?id=". $idMascota."&a=v");
-
-
+if($rs){
+    header("Location: /tfg/Vistas/visitsPet.php?id=". $idMascota."&a=v");
+}else{
+    header('Location: error.html');
+}
 

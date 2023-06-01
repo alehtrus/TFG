@@ -7,7 +7,12 @@ $id = $_GET['id'];
 $mascota = new Mascota();
 $rs = $mascota->borrarMascota($id);
 
-header('Location: /tfg/Vistas/med.php');
+if($rs){
+    header('Location: /tfg/Vistas/med.php');
+}else{
+    header('Location: error.html');
+}
+
 
 
 

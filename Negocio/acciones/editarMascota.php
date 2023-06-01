@@ -18,7 +18,10 @@ $fecha = formatearFecha($fecha);
 
 $mascota = new MascotasAccesoDatos();
 $rs = $mascota->editarMascota($id,$nombre,$especie,$raza,$edad,$genero,$idPropietario,$fecha);
-var_dump($rs);
+
+if($rs != true){
+    header('Location: error.html');
+}
 
 //header('Location: ../Vistas/torneosVista.php');
 /*
