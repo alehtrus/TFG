@@ -1,16 +1,16 @@
 <?php
 
-class Veterinario {
+class Veterinario
+{
 
     private string $nombre;
     private string $direccion;
     private string $municipio;
     private string $telefono;
     private string $email;
-    
+
     function __construct()
     {
-        
     }
 
     function init($nombre, $direccion, $municipio, $telefono, $email)
@@ -23,43 +23,52 @@ class Veterinario {
     }
 
 
-    function unserializeVeterinarios($fichero)
+    function unserializeVeterinarios()
     {
-        $fichero = json_decode($fichero);
-        $lista_veterinarios = [];
+        require_once('../Util/Util.php');
+        $url = GET_VETERINARIOS;
 
-        foreach($fichero as $veterinario){
-           $vet = new Veterinario();
-           $vet->init($veterinario->nombre,$veterinario->direccion,$veterinario->municipio,$veterinario->telefono,$veterinario->email);
+        if (file_get_contents($url) != false) {
+            $fichero = file_get_contents($url);
 
-           $lista_veterinarios[] = $vet;
+            $fichero = json_decode($fichero);
+            $lista_veterinarios = [];
 
+            foreach ($fichero as $veterinario) {
+                $vet = new Veterinario();
+                $vet->init($veterinario->nombre, $veterinario->direccion, $veterinario->municipio, $veterinario->telefono, $veterinario->email);
+
+                $lista_veterinarios[] = $vet;
+            }
+
+            return $lista_veterinarios;
+        }else{
+            return null;
         }
-
-        return $lista_veterinarios;
-
     }
 
     function pintarVeterinarios($lista_veterinarios)
     {
-
-        foreach($lista_veterinarios as $veterinario)
-        {
-            echo
-            ('
-            
-            <div class="col-md-4">
-                <div class="fh5co-blog animate-box">
-                    <div class="blog-text">
-                        <h3><a href="#">'.$veterinario->getNombre().'</a></h3>
-                        <p>'.$veterinario->getDireccion().'</p>
+        if(!empty($lista_veterinarios)){
+            foreach ($lista_veterinarios as $veterinario) {
+                echo ('
+                
+                <div class="col-md-4">
+                    <div class="fh5co-blog animate-box">
+                        <div class="blog-text">
+                            <h3><a href="#">' . $veterinario->getNombre() . '</a></h3>
+                            <p>' . $veterinario->getDireccion() . '</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            ');
+    
+                ');
+            }
+        }else{
+            echo 'ERROR: No se pudo mostrar los veterinarios.';
         }
 
+        
     }
 
 
@@ -112,10 +121,4 @@ class Veterinario {
     {
         $this->email = $email;
     }
-
-
-
-
-
-
 }

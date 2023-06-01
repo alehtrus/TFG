@@ -14,7 +14,7 @@
         body {
             margin: 0;
             padding: 0;
-            background-image: url(images/fondoLogin.jpg);
+            /*background-image: url(images/fondoLogin.jpg);*/
             height: 100vh;
         }
 
@@ -42,7 +42,7 @@
             text-shadow: 2px 2px 2px black;
         }
 
-        .boton{
+        .boton {
             font-weight: 600;
             background-color: #196F3D;
         }
@@ -51,44 +51,6 @@
 
 <body>
     <div id="login">
-        <?php
-
-        try {
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                require_once("../Negocio/cUsuario.php");
-                require_once("../Negocio/cPropietario.php");
-
-                $usuario = new Usuario();
-                $perfil =  $usuario->verificar($_POST['usuario'], $_POST['clave']);
-
-                if ($perfil['rol'] === "USR") {
-                    session_start(); //inicia o reinicia una sesión
-                    $_SESSION['usuario'] = $_POST['usuario'];
-                    $_SESSION['rol'] = $perfil['rol'];
-                    
-
-                    $tmpProp = new Propietario();
-                    $rq = "http://localhost:5174/api/Propietario?dni=" . $perfil['dni'];
-                    $rq = file_get_contents($rq);
-                    $rs = $tmpProp->unserializePropietarios($rq);
-                    $_SESSION['id'] = $rs[0]->getID();
-
-                    header("Location: owner.php?id=" . $rs[0]->getID());
-                } elseif ($perfil['rol'] === "VET") {
-                    session_start(); //inicia o reinicia una sesión
-                    $_SESSION['usuario'] = $_POST['usuario'];
-                    $_SESSION['rol'] = $perfil['rol'];
-                    header("Location: med.php");
-                } else {
-                    header("Location: login.php");
-                }
-            }
-        } catch (Exception $ex) {
-            print('petó');
-        }
-
-
-        ?>
         <h1 class="text-center titulo pt-5">Portal del Peludo</h1>
         <div class="container">
             <div id="login-row" class="row justify-content-center align-items-center">
@@ -105,8 +67,45 @@
                                 <input type="password" name="clave" id="clave" class="form-control">
                             </div>
                             <?php
-                            if (isset($error)) {
-                                print("<div> No tienes acceso </div>");
+                            require_once('../Util/Util.php');
+                            set_error_handler('customErrorHandle');
+                            try {
+                                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                                    require_once("../Negocio/cUsuario.php");
+                                    require_once("../Negocio/cPropietario.php");
+
+                                    $usuario = new Usuario();
+                                    $perfil =  $usuario->verificar($_POST['usuario'], $_POST['clave']);
+                                    
+
+                                    if ($perfil == 'NOT_FOUND') {
+                                        echo 'No se ha podido iniciar sesión. Prueba otra vez.';
+                                    } else {
+                                        if ($perfil['rol'] === "USR") {
+                                            session_start(); //inicia o reinicia una sesión
+                                            $_SESSION['usuario'] = $_POST['usuario'];
+                                            $_SESSION['rol'] = $perfil['rol'];
+
+
+                                            $tmpProp = new Propietario();
+                                            $rq = "http://localhost:5174/api/Propietario?dni=" . $perfil['dni'];
+                                            $rq = file_get_contents($rq);
+                                            $rs = $tmpProp->unserializePropietarios($rq);
+                                            $_SESSION['id'] = $rs[0]->getID();
+
+                                            header("Location: owner.php?id=" . $rs[0]->getID());
+                                        } elseif ($perfil['rol'] === "VET") {
+                                            session_start(); //inicia o reinicia una sesión
+                                            $_SESSION['usuario'] = $_POST['usuario'];
+                                            $_SESSION['rol'] = $perfil['rol'];
+                                            header("Location: med.php");
+                                        } else {
+                                            header("Location: login.php");
+                                        }
+                                    }
+                                }
+                            } catch (Exception $ex) {
+                                print('petó');
                             }
                             ?>
                             <div class="form-group">

@@ -22,7 +22,7 @@ function customErrorHandle($errno, $errstr, $errfile, $errline)
     // Verificar si el error es un warning
     if ($errno === E_WARNING) {        
         //error_log("ERROR: $errstr in $errfile on line $errline", 0);
-        error_log("ERROR: No se ha podido acceder al endpoint.", 0);
+        //echo("ERROR: No se ha podido acceder al endpoint.");
     }
 }
 

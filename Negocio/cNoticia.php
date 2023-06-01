@@ -11,10 +11,9 @@ class Noticia
 
     function __construct()
     {
-        
     }
-    
-    function init($titulo,$descripcion,$link,$publishDate,$imagen)
+
+    function init($titulo, $descripcion, $link, $publishDate, $imagen)
     {
         $this->titulo = $titulo;
         $this->descripcion = $descripcion;
@@ -27,48 +26,62 @@ class Noticia
     {
         require_once("../Util/Util.php");
 
-        $url = GET_NOTICIAS;        
-        $fichero = file_get_contents($url);
+        $url = GET_NOTICIAS;
 
-        $fichero = json_decode($fichero);
-        $lista_noticias = [];
+        if (file_get_contents($url) != false) {
+            $fichero = file_get_contents($url);
+            $fichero = json_decode($fichero);
+            $lista_noticias = [];
 
-        foreach($fichero as $noticia){
-           $new = new Noticia();       
-           $new->init($noticia->titulo, $noticia->descripcion, $noticia->link, $noticia->publishDate, $noticia->imagen); 
-           $lista_noticias[] = $new;
-
+            foreach ($fichero as $noticia) {
+                $new = new Noticia();
+                $new->init($noticia->titulo, $noticia->descripcion, $noticia->link, $noticia->publishDate, $noticia->imagen);
+                $lista_noticias[] = $new;
+            }
+            return $lista_noticias;
+        }else{
+            return null;
         }
-        return $lista_noticias;
     }
 
     function pintarNoticias($lista_noticias)
     {
         require_once("../Util/Util.php");
+
+        if($lista_noticias != null){
+            foreach ($lista_noticias as $noticia) {
+                echo ('        
+                    <div class="col-md-12 animate-box">
+                        <a href="' . $noticia->getLink() . '" class="blog-post">
+                            <span class="img" style="background-image: url(' . $noticia->getImagen() . ');"></span>
+                            <div class="desc">
+                                <h3>' . $noticia->getTitulo() . '</h3>
+                                <span class="cat">' . recortarString($noticia->getDescripcion()) . '</span>
+                            </div>
+                        </a>
+                    </div>        
+            ');
+            }
+        }else{
+            echo 'ERROR: No se pudo pintar las noticias. Listado de noticas no instanciado.';
+        }
+
         
-        foreach($lista_noticias as $noticia)
-        {
-            echo ('        
-                <div class="col-md-12 animate-box">
-                    <a href="'.$noticia->getLink().'" class="blog-post">
-                        <span class="img" style="background-image: url('.$noticia->getImagen().');"></span>
-                        <div class="desc">
-                            <h3>'.$noticia->getTitulo().'</h3>
-                            <span class="cat">'.recortarString($noticia->getDescripcion()).'</span>
-                        </div>
-                    </a>
-                </div>        
-        ');
-        }            
     }
 
     function pintarTitulosNoticias($lista_noticias)
     {
         require_once("../Util/Util.php");
+
+        if(!empty($lista_noticias)){
+            for ($i = 0; $i <= 3; $i++) {
+                echo ('<li><a href="#">' . $lista_noticias[$i]->getTitulo() . '</a></li>');
+            }
+        }else{
+            echo '<li>ERROR: No se pudo pintar los titulos. Lista no instanciada.</li>';
+        }
+
         
-        for ($i=0; $i <= 3; $i++) { 
-            echo('<li><a href="#">'.$lista_noticias[$i]->getTitulo().'</a></li>');
-        }              
     }
 
 
@@ -122,6 +135,4 @@ class Noticia
     {
         $this->imagen = $imagen;
     }
-
-
 }

@@ -121,8 +121,7 @@
 					require_once("../Negocio/cProcedimientos.php");
 					require_once("../Util/Util.php");
 
-					//$cosa = error_reporting(E_ALL ^ E_WARNING);
-					//set_error_handler('customErrorHandle()');
+					set_error_handler('customErrorHandle');
 
 					$procedimiento = new Procedimiento();
 
@@ -141,7 +140,12 @@
 					<div class="col-md-3 col-md-push-1">
 						<h4>Últimos posts</h4>
 						<ul class="fh5co-footer-links">
-							<li><a href="#">Título de los últimos posts con un for (4)</a></li>
+						<?php
+						require_once('../Negocio/cNoticia.php');
+							$new = new Noticia();
+							$listaNews = $new->unserializeNoticias();
+							$new->pintarTitulosNoticias($listaNews);
+						?>
 						</ul>
 					</div>
 

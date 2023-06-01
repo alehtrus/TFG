@@ -115,23 +115,14 @@
 			<div id="fh5co-work">
 				<div class="row">
 					<?php
-					try {
-						require_once("../Negocio/cVeterinarios.php");
-						require_once("../Util/Util.php");
 
-						$url = GET_VETERINARIOS;
-						$contenido = file_get_contents($url);
+					require_once("../Negocio/cVeterinarios.php");
+					require_once("../Util/Util.php");
+					set_error_handler('customErrorHandle');
 
-						if ($contenido != null && !empty($contenido)) {
-
-							$veterinario = new Veterinario();
-							$listaVets = $veterinario->unserializeVeterinarios($contenido);
-							$veterinario->pintarVeterinarios($listaVets);
-						}
-					} catch (Exception $ex) {
-						echo ("Mensaje de error: " . $ex->getMessage());
-					}
-
+					$veterinario = new Veterinario();
+					$listaVets = $veterinario->unserializeVeterinarios();
+					$veterinario->pintarVeterinarios($listaVets);
 					?>
 				</div>
 			</div>
@@ -144,7 +135,12 @@
 					<div class="col-md-3 col-md-push-1">
 						<h4>Últimos posts</h4>
 						<ul class="fh5co-footer-links">
-							<li><a href="#">Título de los últimos posts con un for (4)</a></li>
+						<?php
+						require_once('../Negocio/cNoticia.php');
+							$new = new Noticia();
+							$listaNews = $new->unserializeNoticias();
+							$new->pintarTitulosNoticias($listaNews);
+						?>
 						</ul>
 					</div>
 

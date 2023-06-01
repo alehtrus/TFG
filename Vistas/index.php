@@ -58,7 +58,7 @@
 										echo('<li><a href="med.php">Animales</a></li>');
 									}else
 									{
-										echo('<li><a href="med.php?id='.$_SESSION['id'].'">Mis mascotas</a></li>');
+										echo('<li><a href="owner.php?id='.$_SESSION['id'].'">Mis mascotas</a></li>');
 									}
 								}else
 								{
@@ -83,7 +83,7 @@
 			   			<div class="row">
 				   			<div class="col-md-6 col-md-offset-3 col-md-push-3 slider-text">
 				   				<div class="slider-text-inner">
-				   					<h1>Ellos tabien merecen un sistema centralizado</h1>										
+				   					<h1>Ellos también merecen un sistema centralizado</h1>										
 				   				</div>
 				   			</div>
 				   		</div>
@@ -185,6 +185,9 @@
 					<!-- Noticias aquí -->
 					<?php
 						require_once("../Negocio/cNoticia.php");
+						require("../Util/Util.php");
+						set_error_handler('customErrorHandle');
+
 						$new = new Noticia();
 						$listaNews = $new->unserializeNoticias();
 						$new->pintarNoticias($listaNews);
@@ -232,7 +235,7 @@
 					<h4>Últimos posts</h4>
 					<ul class="fh5co-footer-links">
 						<?php
-						$new->pintarTitulosNoticias($listaNews);
+							$new->pintarTitulosNoticias($listaNews);
 						?>
 					</ul>
 				</div>
