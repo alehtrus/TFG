@@ -45,11 +45,13 @@ class Visita
 
     function pintarVisitasMed($lista_visitas)
     {
-        echo ('<div class="row">');
-        $numVisitas = count($lista_visitas);
-        echo ('<h3>Número de visitas: ' . $numVisitas . '</h3>');
-        foreach ($lista_visitas as $visita) {
-            echo ('            
+
+        if (!empty($lista_visitas)) {
+            echo ('<div class="row">');
+            $numVisitas = count($lista_visitas);
+            echo ('<h3>Número de visitas: ' . $numVisitas . '</h3>');
+            foreach ($lista_visitas as $visita) {
+                echo ('            
             <div class="col-md-12">            
                 <div class="fh5co-blog animate-box">
                     <div class="blog-text">
@@ -59,7 +61,7 @@ class Visita
                         <td class"nombreMedico">' . $visita->getNombreMedico() . '</td>
                         <td class="motivo">' . $visita->getMotivo() . '</td>
                         <td class="procedimiento">' . $visita->getNombreProcedimiento() . '</td>
-                        <td class="eliminar"><a href="/tfg/Negocio/acciones/deleteCita.php?id='.$visita->getIdMascota().'&idCita='.$visita->getId().'">Eliminar</a></td>
+                        <td class="eliminar"><a href="/tfg/Negocio/acciones/deleteCita.php?id=' . $visita->getIdMascota() . '&idCita=' . $visita->getId() . '">Eliminar</a></td>
                     </tr>
                 </table>
                     </div>
@@ -67,11 +69,11 @@ class Visita
             </div>           
 
             ');
-        }
+            }
 
-        $idMascota = $_GET['id'];
+            $idMascota = $_GET['id'];
 
-        echo ('
+            echo ('
 
         <div class="col-md-12">
 			<div class="fh5co-blog animate-box">
@@ -89,7 +91,10 @@ class Visita
 		</div>
         
         ');
-        echo ('</div>');
+            echo ('</div>');
+        } else {
+            echo 'El peludito no tiene visitas registradas o el listada aparece vacío.';
+        }
     }
 
     function insertarVisita($fecha, $idProcedimiento, $idMascota, $idMedico, $motivo)
@@ -112,11 +117,13 @@ class Visita
 
     function pintarVisitas($lista_visitas)
     {
-        echo ('<div class="row">');
-        $numVisitas = count($lista_visitas);
-        echo ('<h3>Número de visitas: ' . $numVisitas . '</h3>');
-        foreach ($lista_visitas as $visita) {
-            echo ('            
+
+        if (!empty($lista_visitas)) {
+            echo ('<div class="row">');
+            $numVisitas = count($lista_visitas);
+            echo ('<h3>Número de visitas: ' . $numVisitas . '</h3>');
+            foreach ($lista_visitas as $visita) {
+                echo ('            
             <div class="col-md-12">            
                 <div class="fh5co-blog animate-box">
                     <div class="blog-text">
@@ -133,14 +140,17 @@ class Visita
             </div>
 
             ');
-        }
+            }
 
-        echo ('
+            echo ('
             <div class="col-md-12">
                 <div><a onClick="history.go(-1)">Atrás</a></div> 
             </div>
         ');
-        echo ('</div>');
+            echo ('</div>');
+        } else {
+            echo 'El peludito no tiene visitas registradas o el listada aparece vacío.';
+        }
     }
 
     function getId()

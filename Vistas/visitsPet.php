@@ -154,35 +154,38 @@
 						header("Location: login.php");
 					}
 
-					try {
-						require_once("../Negocio/cVisita.php");
-						require_once("../Util/Util.php");
+					require_once("../Negocio/cVisita.php");
+					require_once("../Util/Util.php");
 
+					ini_set('display_errors', 'On');
+					ini_set('html_errors', 0);
+					set_error_handler('customErrorHandle');
+
+
+					if (isset($_GET['id']) || empty($_GET['id'])) {
+						header('Location: index.php');
+					} else {
 						$idMascota = $_GET['id'];
-
-						$url = GET_VISITAS_MASCOTA . $idMascota;
-						$contenido = file_get_contents($url);
-
-						if ($contenido != null && !empty($contenido)) {
-
-							$visita = new Visita();
-							$listaVisitas = $visita->unserializeVisitas($contenido);
-
-							if(isset($_GET['a']) && $_GET['a']== 'v')
-							{
-								$visita->pintarVisitasMed($listaVisitas);
-							}else
-							{
-								$visita->pintarVisitas($listaVisitas);
-							}
-							
-						}
-					} catch (Exception $ex) {
-						echo ("Mensaje de error: " . $ex->getMessage());
 					}
 
+					$url = GET_VISITAS_MASCOTA . $idMascota;
+
+					if (file_get_contents($url) != false) {
+						$contenido = file_get_contents($url);
+
+						$visita = new Visita();
+						$listaVisitas = $visita->unserializeVisitas($contenido);
+
+						if (isset($_GET['a']) && $_GET['a'] == 'v') {
+							$visita->pintarVisitasMed($listaVisitas);
+						} else {
+							$visita->pintarVisitas($listaVisitas);
+						}
+					} else {
+						echo 'ERROR: No se pudo mostrar las visitas.';
+					}
 					?>
-						
+
 				</div>
 			</div>
 		</div>

@@ -1,6 +1,6 @@
 <?php
 
-class Medico 
+class Medico
 {
 
     private int $id;
@@ -12,7 +12,6 @@ class Medico
 
     function __construct()
     {
-        
     }
 
     function init($id, $idVeterinario, $dni, $nombre, $numColegiado)
@@ -22,27 +21,28 @@ class Medico
         $this->dni = $dni;
         $this->nombre = $nombre;
         $this->numColegiado = $numColegiado;
-
     }
 
     function unserializeMedicos()
     {
-        $url = GET_MEDICOS;        
-        $fichero = file_get_contents($url);
+        $url = GET_MEDICOS;
+        if (file_get_contents($url) != false) {
+            $fichero = file_get_contents($url);
 
-        $fichero = json_decode($fichero);
-        $lista_medicos = [];
+            $fichero = json_decode($fichero);
+            $lista_medicos = [];
 
-        foreach($fichero as $medico){
-           $med = new Medico();
-           $med->init($medico->id, $medico->id_veterinario, $medico->dni ,$medico->nombre ,$medico->numero_colegiado);
+            foreach ($fichero as $medico) {
+                $med = new Medico();
+                $med->init($medico->id, $medico->id_veterinario, $medico->dni, $medico->nombre, $medico->numero_colegiado);
 
-           $lista_medicos[] = $med;
+                $lista_medicos[] = $med;
+            }
 
+            return $lista_medicos;
+        } else {
+            return null;
         }
-
-        return $lista_medicos;
-
     }
 
     function getId()
@@ -98,6 +98,4 @@ class Medico
     {
         $this->numColegiado = $numColegiado;
     }
-
-
 }

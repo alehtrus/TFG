@@ -74,9 +74,10 @@ class Mascota
 
     function pintarMascotas($lista_mascotas)
     {
-        echo ('<div class="row">');
-        foreach ($lista_mascotas as $mascota) {
-            echo ('            
+        if (!empty($lista_mascotas)) {
+            echo ('<div class="row">');
+            foreach ($lista_mascotas as $mascota) {
+                echo ('            
             <div class="col-md-4">            
                 <div class="fh5co-blog animate-box">
                     <div class="blog-text">
@@ -88,27 +89,30 @@ class Mascota
             </div>
 
             ');
-        }
-            echo('
+            }
+            echo ('
             
             <div class="col-md-4">            
             <div class="fh5co-blog animate-box">
                 <div class="blog-text">
-                    <h4><a href="newPet.php?id='.$mascota->getIdPropietario().'">Agregar a un peludito nuevo +</a></h4>                    
+                    <h4><a href="newPet.php?id=' . $mascota->getIdPropietario() . '">Agregar a un peludito nuevo +</a></h4>                    
                 </div>
             </div>
         </div>
-
             ');
 
-        echo ('</div>');
+            echo ('</div>');
+        } else {
+            echo 'El listado de mascotas aparece vacío.';
+        }
     }
 
     function pintarMascotasMeds($lista_mascotas)
     {
-        echo ('<div class="row">');
-        foreach ($lista_mascotas as $mascota) {
-            echo ('            
+        if (!empty($lista_mascotas)) {
+            echo ('<div class="row">');
+            foreach ($lista_mascotas as $mascota) {
+                echo ('            
             <div class="col-md-4">            
                 <div class="fh5co-blog animate-box">
                     <div class="blog-text">
@@ -120,8 +124,11 @@ class Mascota
             </div>
 
             ');
+            }
+            echo ('</div>');
+        } else {
+            echo 'El listado de mascotas aparece vacío.';
         }
-        echo ('</div>');
     }
 
 
