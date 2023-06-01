@@ -63,34 +63,37 @@
 		<div class="container-wrap">
 			<div id="fh5co-work">
 				<?php
+				require_once('../Negocio/cMascota.php');
+				require_once('../Util/Util.php');
+
+				ini_set('display_errors', 'On');
+				ini_set('html_errors', 0);
+				set_error_handler('customErrorHandle');
 
 				session_start(); // reanudamos la sesión
 				if (!isset($_SESSION['usuario'])) {
 					header("Location: login.php");
 				}
 
-				require_once('../Negocio/cMascota.php');
-				require_once('../Util/Util.php');
-
-				$idOwner = $_GET['id'];
-
-				ini_set('display_errors', 'On');
-				ini_set('html_errors', 0);
+				if (!isset($_GET['id']) || empty($_GET['id'])) {
+					header("Location: index.php");
+				} else {
+					$idOwner = $_GET['id'];
+				}
 
 				$url = GET_MASCOTAS_POR_PROPIETARIO . $idOwner;
-				$contenido = file_get_contents($url);
 
-				//var_dump($contenido);
-				if ($contenido != null && !empty($contenido)) {
+				if (file_get_contents($url) != false) {
+					$contenido = file_get_contents($url);
 
 					$mascota = new Mascota();
-					//var_dump($contenido);
 					$listaMascotas = $mascota->unserializeMascotas($contenido);
-
 					$numeMascotas = count($listaMascotas);
-					echo('<h3>Tienes registrados '. $numeMascotas.' peludos!</h3>');
 
+					echo ('<h3>Tienes registrados ' . $numeMascotas . ' peludos!</h3>');
 					$mascota->pintarMascotas($listaMascotas);
+				}else{
+					echo 'ERROR: No se puedo mostrar las mascotas';
 				}
 				?>
 			</div>

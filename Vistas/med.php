@@ -63,30 +63,31 @@
 		<div class="container-wrap">
 			<div id="fh5co-work">
 				<?php
-
-				session_start(); // reanudamos la sesión
-				if (!isset($_SESSION['usuario'])) {
-					header("Location: index.php");
-				}
-				
-				echo ("Bienvenido " . $_SESSION['usuario']);
-
 				require_once('../Negocio/cMascota.php');
 				require_once('../Util/Util.php');
 
 				ini_set('display_errors', 'On');
 				ini_set('html_errors', 0);
+				set_error_handler('customErrorHandle');
+
+				session_start(); // reanudamos la sesión
+				if (!isset($_SESSION['usuario'])) {
+					header("Location: index.php");
+				}
+
+				echo ("Bienvenido " . $_SESSION['usuario']);
 
 				$url = GET_TODAS_MASCOTAS;
-				$contenido = file_get_contents($url);
-				//var_dump($contenido);
-				if ($contenido != null && !empty($contenido)) {
+				if (file_get_contents($url) != false) {
+					$contenido = file_get_contents($url);
 
 					$mascota = new Mascota();
-					//var_dump($contenido);
 					$listaMascotas = $mascota->unserializeMascotas($contenido);
 					$mascota->pintarMascotasMeds($listaMascotas);
+				}else{
+					echo 'ERROR: No se puedo mostrar las mascotas';
 				}
+
 				?>
 			</div>
 		</div>

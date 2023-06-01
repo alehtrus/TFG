@@ -14,7 +14,7 @@
         body {
             margin: 0;
             padding: 0;
-            /*background-image: url(images/fondoLogin.jpg);*/
+            background-image: url(images/fondoLogin.jpg);
             height: 100vh;
         }
 

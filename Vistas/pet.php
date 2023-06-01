@@ -62,32 +62,37 @@
 		<div class="container-wrap">
 			<div id="fh5co-work">
 				<?php
+				require_once('../Negocio/cMascota.php');
+				require_once('../Util/Util.php');
+
+				ini_set('display_errors', 'On');
+				ini_set('html_errors', 0);
+				set_error_handler('customErrorHandle');
 
 				session_start(); // reanudamos la sesión
 				if (!isset($_SESSION['usuario'])) {
 					header("Location: login.php");
 				}
 
-				require_once('../Negocio/cMascota.php');
-				require_once('../Util/Util.php');
-
-				$idMascota = $_GET['id'];
-
-				ini_set('display_errors', 'On');
-				ini_set('html_errors', 0);
+				if (!isset($_GET['id']) || empty($_GET['id'])) {
+					header("Location: index.php");
+				} else {
+					$idMascota = $_GET['id'];
+				}
 
 				$url = GET_MASCOTA . $idMascota;
-				$contenido = file_get_contents($url);
 
-				$mascota = new Mascota();
-				$mascota->unserializeMascotas($contenido);
+				if (file_get_contents($url) != false) {
+					$contenido = file_get_contents($url);
 
-				$listaMascotas = $mascota->unserializeMascotas($contenido);
+					$mascota = new Mascota();
+					$mascota->unserializeMascotas($contenido);
 
+					$listaMascotas = $mascota->unserializeMascotas($contenido);
 
-				if (isset($_GET['a']) && $_GET['a'] == 'v') {
-					// Version con los enlaces de gestion para los veterinarios
-					echo ('
+					if (isset($_GET['a']) && $_GET['a'] == 'v') {
+						// Version con los enlaces de gestion para los veterinarios
+						echo ('
 					<div class="row">
 				<div class="col-xs-4">
 					<p>Nombre</p>					
@@ -149,10 +154,10 @@
 				</div>
 			</div>
 					'
-					);
-				} else {
-					//Versión sin enlaces para usuarios
-					echo ('
+						);
+					} else {
+						//Versión sin enlaces para usuarios
+						echo ('
 					<div class="row">
 				<div class="col-xs-4">
 					<p>Nombre</p>					
@@ -210,9 +215,11 @@
 				</div>
 			</div>
 					'
-					);
+						);
+					}
+				} else {
+					echo 'ERROR: No se puedo mostrar las mascotas';
 				}
-
 				?>
 
 			</div>
