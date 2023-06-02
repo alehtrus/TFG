@@ -201,16 +201,17 @@
 			<div class="blog-entry fh5co-light-grey">
 				<div class="row animate-box">
 					<div class="col-md-12">
-						<h2>Últimos posts</h2>
+						<h2>Peluditos sin hogar</h2>
 					</div>
 				</div>
 				<div class="row">
 					<!-- Animiales aquí -->
 					<?php
-						//require_once("../Negocio/cNoticia.php");
-						//$new = new Noticia();
-						//$listaNews = $new->unserializeNoticias();
-						//$new->pintarNoticias($listaNews);
+						require_once("../Negocio/cAnimalAdopcion.php");
+						$aniaml = new AnimalAdoptivo();
+						$tmpLista = $aniaml->unserializeAnimal();
+						$aniaml->pintarAnimales($tmpLista);
+
 					?>
 				</div>
 				<!-- Terminan las animales -->
