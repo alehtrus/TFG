@@ -35,7 +35,7 @@ class AnimalAdoptivo
                 $lista_animales[] = $new;
             }
             return $lista_animales;
-        }else{
+        } else {
             return null;
         }
     }
@@ -44,25 +44,39 @@ class AnimalAdoptivo
     {
         require_once("../Util/Util.php");
 
-        if($lista_animales != null){
-            foreach ($lista_animales as $noticia) {
-                $numAleatorio = random_int(1,6);
-                echo ('        
+        if ($lista_animales != null) {
+            //var_dump($lista_animales);
+            $contador = 0;
+            $grupos = ceil(count($lista_animales) / 3);
+            for ($i = 0; $i < $grupos; $i++) {
+                if($i == 0){
+                    echo '<div class="carousel-item active">';
+                }else{
+                    echo '<div class="carousel-item">';
+                }
+                
+                for ($j = 0; $j < 3; $j++) {
+                    if (isset($lista_animales[$contador])) {
+                        $numAleatorio = random_int(1, 6);
+                        echo ('
                     <div class="col-md-12 animate-box">
-                        <a href="' . $noticia->getLink() . '" class="blog-post" target= "_blank">
-                            <span class="img" style="background-image: url(../Vistas/images/portfolio-'.$numAleatorio.'.jpg);"></span>
+                        <a href="' . $lista_animales[$contador]->link . '" class="blog-post" target= "_blank">
+                            <span class="img" style="background-image: url(../Vistas/images/portfolio-' . $numAleatorio . '.jpg);"></span>
                             <div class="desc">
-                                <h3>' . $noticia->getTitulo() . '</h3>
-                                <span class="cat">' . recortarString($noticia->getDescripcion()) . '</span>
+                                <h3>' . $lista_animales[$contador]->titulo . '</h3>
+                                <span class="cat">' . recortarString($lista_animales[$contador]->descripcion) . '</span>
                             </div>
                         </a>
-                    </div>        
-            ');
+                    </div>
+                    ');
+                    $contador++;
+                    }                    
+                }
+                echo '</div>';
             }
-        }else{
-            echo 'ERROR: No se pudo pintar las noticias. Listado de noticas no instanciado.';
+        } else {
+            echo 'ERROR: No se pudo pintar los animales en adopcion. Listado de animales no vacio.';
         }
-        
     }
 
     function getTitulo()
@@ -94,5 +108,4 @@ class AnimalAdoptivo
     {
         $this->link = $link;
     }
-
 }

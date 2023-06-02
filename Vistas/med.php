@@ -75,7 +75,7 @@
 					header("Location: index.php");
 				}
 
-				echo ("Bienvenido " . $_SESSION['usuario']);
+				echo "<h1>Bienvenido " . $_SESSION['usuario']. "</h1>";
 
 				$url = GET_TODAS_MASCOTAS;
 				if (file_get_contents($url) != false) {

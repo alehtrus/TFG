@@ -12,7 +12,7 @@ $v = new Visita();
 $rs= $v->borrarCita($idCita);
 
 if($rs){
-    header('Location: /tfg/Vistas/visitsPet.php?id='.$id);
+    header('Location: /tfg/Vistas/visitsPet.php?id='.$id."&a=v");
 }else{
     header('Location: error.html');
 }

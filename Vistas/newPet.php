@@ -81,7 +81,7 @@
 							<label for="nombre">Nombre: </label>
 						</div>
 						<div class="col-xs-4">
-							<input type="text" name="nombre" id="nombre" required>
+							<input type="text" pattern="[a-zA-Z]" name="nombre" id="nombre" required>
 							<input type="hidden" name="propietario" id="propietario" value="<?php echo($idOwner);?>">
 						</div>
 					</div>
@@ -91,7 +91,7 @@
 							<label for="especie">Especie: </label>
 						</div>
 						<div class="col-xs-4">
-							<input type="text" name="especie" id="especie" required>
+							<input type="text" pattern="[a-zA-Z]" name="especie" id="especie" required>
 						</div>
 					</div>
 
@@ -100,7 +100,7 @@
 							<label for="raza">Raza: </label>
 						</div>
 						<div class="col-xs-4">
-							<input type="text" name="raza" id="raza" required>
+							<input type="text" pattern="[a-zA-Z]" name="raza" id="raza" required>
 						</div>
 					</div>
 

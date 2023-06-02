@@ -161,13 +161,14 @@
 					ini_set('html_errors', 0);
 					set_error_handler('customErrorHandle');
 
-
-					if (isset($_GET['id']) || empty($_GET['id'])) {
+					
+					if (!isset($_GET['id']) || empty($_GET['id'])) {
 						header('Location: index.php');
 					} else {
 						$idMascota = $_GET['id'];
 					}
-
+					
+					$idMascota = $_GET['id'];
 					$url = GET_VISITAS_MASCOTA . $idMascota;
 
 					if (file_get_contents($url) != false) {

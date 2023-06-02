@@ -49,14 +49,19 @@ class Noticia
         require_once("../Util/Util.php");
 
         if($lista_noticias != null){
-            foreach ($lista_noticias as $noticia) {
+            $usados = [];
+
+            for ($i=0; $i < 3; $i++) {
+                $noticiaAleatoria = cambiarNumAleatorio($lista_noticias, $usados);                
+                array_push($usados, $noticiaAleatoria);
+                
                 echo ('        
                     <div class="col-md-12 animate-box">
-                        <a href="' . $noticia->getLink() . '" class="blog-post">
-                            <span class="img" style="background-image: url(' . $noticia->getImagen() . ');"></span>
+                        <a href="' . $lista_noticias[$noticiaAleatoria]->getLink() . '" class="blog-post">
+                            <span class="img" style="background-image: url(' . $lista_noticias[$noticiaAleatoria]->getImagen() . ');"></span>
                             <div class="desc">
-                                <h3>' . $noticia->getTitulo() . '</h3>
-                                <span class="cat">' . recortarString($noticia->getDescripcion()) . '</span>
+                                <h3>' . $lista_noticias[$noticiaAleatoria]->getTitulo() . '</h3>
+                                <span class="cat">' . recortarString($lista_noticias[$noticiaAleatoria]->getDescripcion()) . '</span>
                             </div>
                         </a>
                     </div>        

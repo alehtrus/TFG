@@ -45,7 +45,7 @@ class Visita
 
     function pintarVisitasMed($lista_visitas)
     {
-
+        $idMascota = $_GET['id'];
         if (!empty($lista_visitas)) {
             echo ('<div class="row">');
             $numVisitas = count($lista_visitas);
@@ -69,9 +69,7 @@ class Visita
             </div>           
 
             ');
-            }
-
-            $idMascota = $_GET['id'];
+            }            
 
             echo ('
 
@@ -93,7 +91,24 @@ class Visita
         ');
             echo ('</div>');
         } else {
-            echo 'El peludito no tiene visitas registradas o el listada aparece vacío.';
+            echo ('
+
+        <div class="col-md-12">
+			<div class="fh5co-blog animate-box">
+				<div class="blog-text">
+					<a href="newVisit.php?id=' . $idMascota . '">
+                        <table class="visita">
+                            <tr>
+                                <td class="nuevaVista"> Nueva visita +</td>
+                            </tr>
+                        </table>
+                    </a>
+				</div>
+			</div>
+            <div><a href="med.php">Atrás</a></div>
+		</div>
+        
+        ');
         }
     }
 

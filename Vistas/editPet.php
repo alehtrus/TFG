@@ -110,7 +110,7 @@
 							<label for="nombre">Nombre: </label>
 						</div>
 						<div class="col-xs-4">
-							<input type="text" name="nombre" id="nombre" value="<?php echo ($listaMascotas[0]->getNombre()); ?>">
+							<input type="text" name="nombre" id="nombre" value="<?php print($listaMascotas[0]->getNombre()); ?>" required>
 							<input type="hidden" name="idMascota" id="idMascota" value="<?php echo ($listaMascotas[0]->getID()); ?>">
 							<input type="hidden" name="propietario" id="propietario" value="<?php echo ($listaMascotas[0]->getIdPropietario()); ?>">
 						</div>
@@ -121,7 +121,7 @@
 							<label for="especie">Especie: </label>
 						</div>
 						<div class="col-xs-4">
-							<input type="text" name="especie" id="especie" value="<?php echo ($listaMascotas[0]->getEspecie()); ?>">
+							<input type="text" name="especie" id="especie" value="<?php echo ($listaMascotas[0]->getEspecie()); ?>" required>
 						</div>
 					</div>
 
@@ -130,7 +130,7 @@
 							<label for="raza">Raza: </label>
 						</div>
 						<div class="col-xs-4">
-							<input type="text" name="raza" id="raza" value="<?php echo ($listaMascotas[0]->getRaza()); ?>">
+							<input type="text" name="raza" id="raza" value="<?php echo ($listaMascotas[0]->getRaza()); ?>" required>
 						</div>
 					</div>
 
@@ -139,7 +139,7 @@
 							<label for="edad">Edad: </label>
 						</div>
 						<div class="col-xs-4">
-							<input type="number" name="edad" id="edad" value="<?php echo ($listaMascotas[0]->getEdad()); ?>">
+							<input type="number" name="edad" id="edad" value="<?php echo ($listaMascotas[0]->getEdad()); ?>" required>
 						</div>
 					</div>
 
@@ -148,7 +148,7 @@
 							<label for="genero">Genero: </label>
 						</div>
 						<div class="col-xs-4">
-							<select name="genero" id="genero" default="adad">
+							<select name="genero" id="genero" required>
 								<option value="" selected="true" disabled="disabled">Selecciona una opción</option>
 								<option value="Macho">Macho</option>
 								<option value="Hembra">Hembra</option>
@@ -161,7 +161,7 @@
 							<label for="fecha">Fecha de la última visita: </label>
 						</div>
 						<div class="col-xs-4">
-							<input type="datetime" name="fecha" id="fecha" value="<?php echo ($listaMascotas[0]->getFechaUltVisita()); ?>">
+							<input type="datetime" name="fecha" id="fecha" value="<?php echo ($listaMascotas[0]->getFechaUltVisita()); ?>" required>
 						</div>
 					</div>
 

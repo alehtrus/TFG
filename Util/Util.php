@@ -35,6 +35,18 @@ function recortarString($texto) {
     }
 }
 
+function cambiarNumAleatorio($lista_noticias, $usados){
+    $noticiaAleatoria = random_int(0, count($lista_noticias));
+    
+    if(in_array($noticiaAleatoria, $usados)){
+        return cambiarNumAleatorio($lista_noticias, $usados);
+    }else{
+        return $noticiaAleatoria;
+    }
+    
+    $noticiaAleatoria = random_int(0, count($lista_noticias));
+}
+
 function formatearFecha($fecha)
 {
     //var_dump($fecha);
