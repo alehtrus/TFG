@@ -110,7 +110,7 @@
 							<label for="nombre">Nombre: </label>
 						</div>
 						<div class="col-xs-4">
-							<input type="text" name="nombre" id="nombre" value="<?php print($listaMascotas[0]->getNombre()); ?>" required>
+							<input type="text" pattern="[a-zA-Z ]{3,250}" name="nombre" id="nombre" value="<?php print($listaMascotas[0]->getNombre()); ?>" required>
 							<input type="hidden" name="idMascota" id="idMascota" value="<?php echo ($listaMascotas[0]->getID()); ?>">
 							<input type="hidden" name="propietario" id="propietario" value="<?php echo ($listaMascotas[0]->getIdPropietario()); ?>">
 						</div>
@@ -121,7 +121,7 @@
 							<label for="especie">Especie: </label>
 						</div>
 						<div class="col-xs-4">
-							<input type="text" name="especie" id="especie" value="<?php echo ($listaMascotas[0]->getEspecie()); ?>" required>
+							<input type="text" pattern="[a-zA-Z ]{3,250}" name="especie" id="especie" value="<?php echo ($listaMascotas[0]->getEspecie()); ?>" required>
 						</div>
 					</div>
 
@@ -130,7 +130,7 @@
 							<label for="raza">Raza: </label>
 						</div>
 						<div class="col-xs-4">
-							<input type="text" name="raza" id="raza" value="<?php echo ($listaMascotas[0]->getRaza()); ?>" required>
+							<input type="text" pattern="[a-zA-Z ]{3,250}" name="raza" id="raza" value="<?php echo ($listaMascotas[0]->getRaza()); ?>" required>
 						</div>
 					</div>
 

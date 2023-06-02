@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
+
+<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Portal del Peludo</title>
@@ -10,7 +11,7 @@
 
 	<link href="https://fonts.googleapis.com/css?family=Oxygen:300,400" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
-	
+
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="css/animate.css">
 	<!-- Icomoon Icon Fonts-->
@@ -31,182 +32,185 @@
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
 
-	</head>
-	<body>
-		
+</head>
+
+<body>
+
 	<div class="fh5co-loader"></div>
-	
+
 	<div id="page">
-	<nav class="fh5co-nav" role="navigation">
-		<div class="container-wrap">
-			<div class="top-menu">
-				<div class="row">
-					<div class="col-xs-4">
-						<div id="fh5co-logo"><a href="index.php">Portal del Peludo</a></div>
+		<nav class="fh5co-nav" role="navigation">
+			<div class="container-wrap">
+				<div class="top-menu">
+					<div class="row">
+						<div class="col-xs-4">
+							<div id="fh5co-logo"><a href="index.php">Portal del Peludo</a></div>
+						</div>
+						<div class="col-xs-8 text-right menu-1">
+							<ul>
+								<li class="active"><a href="index.php">Inicio</a></li>
+								<li><a href="services.php">Servicios</a></li>
+								<li><a href="vets.php">Veterinarios</a></li>
+								<li><a href="about.php">¿Qué somos?</a></li>
+								<li><a href="contact.php">Contacto</a></li>
+							</ul>
+						</div>
 					</div>
-					<div class="col-xs-8 text-right menu-1">
-						<ul>
-							<li class="active"><a href="index.php">Inicio</a></li>
-							<li><a href="services.php">Servicios</a></li>
-							<li><a href="vets.php">Veterinarios</a></li>
-							<li><a href="about.php">¿Qué somos?</a></li>
-							<li><a href="contact.php">Contacto</a></li>
+
+				</div>
+			</div>
+		</nav>
+		<div class="container-wrap">
+			<aside id="fh5co-hero">
+				<!-- CARRUSEL -->
+				<div class="flexslider">
+					<ul class="slides">
+						<li style="background-image: url(images/vet1.jpg);">
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-md-6 col-md-offset-3 col-md-push-3 slider-text">
+										<div class="slider-text-inner">
+											<h1>Ellos tabien merecen un sistema centralizado</h1>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li style="background-image: url(images/vet2.jpg);">
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-md-6 col-md-offset-3 col-md-pull-3 slider-text">
+										<div class="slider-text-inner">
+											<h1>Por el cariño que nos proporcionan</h1>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li style="background-image: url(images/vet3.jpg);">
+							<div class="container-fluids">
+								<div class="row">
+									<div class="col-md-6 col-md-offset-3 slider-text">
+										<div class="slider-text-inner text-center">
+											<h1>Siempre a nuestro lado, igual que nosotros al suyo</h1>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li style="background-image: url(images/vet4.jpg);">
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-md-6 col-md-offset-3 col-md-push-3 slider-text">
+										<div class="slider-text-inner">
+											<h1>Por el mejor cuidado posible</h1>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</aside>
+
+			<div id="fh5co-contact">
+				<div class="row animate-box">
+					<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
+						<h2>Contáctanos</h2>
+						<p>¡No dudes en ponerte en contácto con nosotros si deseas formar parte de nuestro equipo!</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3 col-md-push-1 animate-box">
+						<h3>Información de contácto</h3>
+						<ul class="contact-info">
+							<li><i class="icon-phone3"></i>+34 687 21 76 32</li>
+							<li><i class="icon-location3"></i><a href="#">portaldelpeludo@gmail.com</a></li>
+							<li><i class="icon-globe2"></i><a href="#">www.portaldelpeludo.com</a></li>
+						</ul>
+					</div>
+					<div class="col-md-7 col-md-push-1 animate-box">
+						<div class="row">
+							<form action="../Negocio/acciones/enviarEmail.php" method="POST">
+								<div class="col-md-6">
+									<div class="form-group">
+										<input type="text" name="nombre" id="nombre" class="form-control" pattern="[a-zA-Z ]{3,250}" placeholder="Nombre y Apellidos"  required>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<textarea class="form-control" name="mensaje" id="mensaje" cols="30" rows="7" placeholder="Mensaje"  required></textarea>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<input type="submit" value="Enviar mensaje" class="btn btn-primary btn-modify">
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!-- END container-wrap -->
+
+		<div class="container-wrap">
+			<footer id="fh5co-footer" role="contentinfo">
+				<div class="row">
+
+					<div class="col-md-3 col-md-push-1">
+						<h4>Últimos posts</h4>
+						<ul class="fh5co-footer-links">
+							<li><a href="#">Título de los últimos posts con un for (4)</a></li>
+						</ul>
+					</div>
+
+					<div class="col-md-3 col-md-push-1">
+						<h4>Links</h4>
+						<ul class="fh5co-footer-links">
+							<li><a href="#">Inicio</a></li>
+							<li><a href="#">Servicios</a></li>
+							<li><a href="#">Veterinarios</a></li>
+							<li><a href="#">¿Qué somos?</a></li>
+						</ul>
+					</div>
+
+					<div class="col-md-4">
+						<h4>Información de contacto</h4>
+						<ul class="fh5co-footer-links">
+							<li>Si estas interesado en fromar parte de la plataforma y estar en el listado de veterinarios, por favor ponte en contacto con nosotros.</li>
+							<li><a href="tel://687217632">+34 687 21 76 32</a></li>
+							<li><a href="mailto:info@yoursite.com">portaldelpeludo@gmail.com</a></li>
 						</ul>
 					</div>
 				</div>
-				
-			</div>
-		</div>
-	</nav>
-	<div class="container-wrap">
-		<aside id="fh5co-hero">
-			<!-- CARRUSEL -->
-			<div class="flexslider">
-				<ul class="slides">
-			   	<li style="background-image: url(images/vet1.jpg);">
-			   		<div class="container-fluid">
-			   			<div class="row">
-				   			<div class="col-md-6 col-md-offset-3 col-md-push-3 slider-text">
-				   				<div class="slider-text-inner">
-				   					<h1>Ellos tabien merecen un sistema centralizado</h1>										
-				   				</div>
-				   			</div>
-				   		</div>
-			   		</div>
-			   	</li>
-			   	<li style="background-image: url(images/vet2.jpg);">
-			   		<div class="container-fluid">
-			   			<div class="row">
-				   			<div class="col-md-6 col-md-offset-3 col-md-pull-3 slider-text">
-				   				<div class="slider-text-inner">
-				   					<h1>Por el cariño que nos proporcionan</h1>										
-				   				</div>
-				   			</div>
-				   		</div>
-			   		</div>
-			   	</li>
-			   	<li style="background-image: url(images/vet3.jpg);">
-			   		<div class="container-fluids">
-			   			<div class="row">
-				   			<div class="col-md-6 col-md-offset-3 slider-text">
-				   				<div class="slider-text-inner text-center">
-				   					<h1>Siempre a nuestro lado, igual que nosotros al suyo</h1>										
-				   				</div>
-				   			</div>
-				   		</div>
-			   		</div>
-			   	</li>
-			   	<li style="background-image: url(images/vet4.jpg);">
-			   		<div class="container-fluid">
-			   			<div class="row">
-				   			<div class="col-md-6 col-md-offset-3 col-md-push-3 slider-text">
-				   				<div class="slider-text-inner">
-				   					<h1>Por el mejor cuidado posible</h1>										
-				   				</div>
-				   			</div>
-				   		</div>
-			   		</div>
-			   	</li>	   	
-			  	</ul>
-		  	</div>
-		</aside>
 
-		<div id="fh5co-contact">
-			<div class="row animate-box">
-				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-					<h2>Contáctanos</h2>
-					<p>¡No dudes en ponerte en contácto con nosotros si deseas formar parte de nuestro equipo!</p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-3 col-md-push-1 animate-box">
-					<h3>Información de contácto</h3>
-					<ul class="contact-info">						
-						<li><i class="icon-phone3"></i>+34 687 21 76 32</li>
-						<li><i class="icon-location3"></i><a href="#">portaldelpeludo@gmail.com</a></li>
-						<li><i class="icon-globe2"></i><a href="#">www.portaldelpeludo.com</a></li>
-					</ul>
-				</div>
-				<div class="col-md-7 col-md-push-1 animate-box">
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<input type="text" class="form-control" placeholder="Nombre y Apellidos">
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<input type="text" class="form-control" placeholder="Email">
-							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="form-group">
-								<textarea name="" class="form-control" id="" cols="30" rows="7" placeholder="Mensaje"></textarea>
-							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="form-group">
-								<input type="submit" value="Enviar mensaje" class="btn btn-primary btn-modify">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div><!-- END container-wrap -->
-
-	<div class="container-wrap">
-		<footer id="fh5co-footer" role="contentinfo">
-			<div class="row">
-				
-				<div class="col-md-3 col-md-push-1">
-					<h4>Últimos posts</h4>
-					<ul class="fh5co-footer-links">
-						<li><a href="#">Título de los últimos posts con un for (4)</a></li>
-					</ul>
-				</div>
-
-				<div class="col-md-3 col-md-push-1">
-					<h4>Links</h4>
-					<ul class="fh5co-footer-links">
-						<li><a href="#">Inicio</a></li>
-						<li><a href="#">Servicios</a></li>
-						<li><a href="#">Veterinarios</a></li>
-						<li><a href="#">¿Qué somos?</a></li>
-					</ul>
-				</div>
-
-				<div class="col-md-4">
-					<h4>Información de contacto</h4>
-					<ul class="fh5co-footer-links">
-						<li>Si estas interesado en fromar parte de la plataforma y estar en el listado de veterinarios, por favor ponte en contacto con nosotros.</li>						
-						<li><a href="tel://687217632">+34 687 21 76 32</a></li>
-						<li><a href="mailto:info@yoursite.com">portaldelpeludo@gmail.com</a></li>						
-					</ul>
-				</div>
-			</div>
-
-			<div class="row copyright">
-				<div class="col-md-12 text-center">
-					<p>
-						<small class="block">&copy; 2023 Portal del Peludo</small> 
-					</p>
-					<p>
+				<div class="row copyright">
+					<div class="col-md-12 text-center">
+						<p>
+							<small class="block">&copy; 2023 Portal del Peludo</small>
+						</p>
+						<p>
 						<ul class="fh5co-social-icons">
 							<li><a href="#"><i class="icon-twitter"></i></a></li>
 							<li><a href="#"><i class="icon-instagram"></i></a></li>
 						</ul>
-					</p>
+						</p>
+					</div>
 				</div>
-			</div>
-		</footer>
-	</div><!-- END container-wrap -->
+			</footer>
+		</div><!-- END container-wrap -->
 	</div>
 
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up2"></i></a>
 	</div>
-	
+
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
@@ -225,6 +229,6 @@
 	<!-- Main -->
 	<script src="js/main.js"></script>
 
-	</body>
-</html>
+</body>
 
+</html>
