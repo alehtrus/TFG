@@ -11,15 +11,17 @@ $genero = $_POST['genero'];
 $idPropietario = $_POST['propietario'];
 $fecha = $_POST['fecha'];
 
-//echo($nombre ." ". $especie." ". $raza." ". $edad." ". $genero." ". $idPropietario." ". $fecha);
+try {
+    $tmpMascota = new Mascota();
+    $rs = $tmpMascota->insertarMascota($nombre, $especie, $raza, $edad, $genero, $idPropietario, $fecha);
 
-$tmpMascota = new Mascota();
-$rs = $tmpMascota->insertarMascota($nombre, $especie, $raza, $edad, $genero, $idPropietario, $fecha);
-
-if($rs){
-    header("Location: /tfg/Vistas/owner.php?id=".$idPropietario);
-}else{
-    header('Location: error.html');
+    if ($rs) {
+        header("Location: /tfg/Vistas/owner.php?id=" . $idPropietario);
+    } else {
+        header('Location: /tfg/Vistas/error/error.html');
+    }
+} catch (mysqli_sql_exception $e) {
+    header('Location: /tfg/Vistas/error/error.html');
+} catch (Exception $e) {
+    header('Location: /tfg/Vistas/error/error.html');
 }
-
-

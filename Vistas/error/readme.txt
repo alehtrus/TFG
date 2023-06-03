@@ -1,5 +1,5 @@
-This template / effect / code has been created by agathaco.
+This template / effect / code has been created by Liam.
 You can customize and check it out on its original site on the following link:
-https://codepen.io/agathaco/pen/JaGQPr
+https://codepen.io/liamj/pen/yrEXNx
 
 Thank you

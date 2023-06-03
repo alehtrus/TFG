@@ -15,12 +15,17 @@ $fecha = $_POST['fecha'];
 
 $fecha = formatearFecha($fecha);
 
+try {
+    $mascota = new MascotasAccesoDatos();
+    $rs = $mascota->editarMascota($id, $nombre, $especie, $raza, $edad, $genero, $idPropietario, $fecha);
 
-$mascota = new MascotasAccesoDatos();
-$rs = $mascota->editarMascota($id,$nombre,$especie,$raza,$edad,$genero,$idPropietario,$fecha);
-
-if($rs != true){
-    header('Location: error.html');
+    if ($rs != true) {
+        header('Location: /tfg/Vistas/error/error.html');
+    }
+} catch (mysqli_sql_exception $e) {
+    header('Location: /tfg/Vistas/error/error.html');
+} catch (Exception $e) {
+    header('Location: /tfg/Vistas/error/error.html');
 }
 
 //header('Location: ../Vistas/torneosVista.php');
@@ -53,4 +58,3 @@ if (curl_errno($ch)) {
 }
 
 */
-

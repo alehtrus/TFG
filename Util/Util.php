@@ -54,7 +54,7 @@ function formatearFecha($fecha)
     //var_dump($partes);
     $partesFecha = explode("/", $partes[0]);
 
-    $fechaFinal = $partesFecha[2]."/".$partesFecha[1]."/".$partesFecha[0]. " " . $partes[1];
+    $fechaFinal = $partesFecha[2]."/".$partesFecha[0]."/".$partesFecha[1]. " " . $partes[1];
 
     return $fechaFinal;
 }

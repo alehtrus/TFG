@@ -92,16 +92,23 @@
 					$genero = $_POST['genero'];
 					$idPropietario = $_POST['propietario'];
 					$fecha = $_POST['fecha'];
+					//var_dump($fecha);
 					$fecha = formatearFecha($fecha);
+					//var_dump($fecha);
 
-					$rs = $mascota->editarMascota($id, $nombre, $especie, $raza, $edad, $genero, $idPropietario, $fecha);
-					var_dump($rs);
-					if ($rs == true) {
-						header('Location: pet.php?a=v&id=' . $listaMascotas[0]->getID());
-					}
+					
+					try{
+						$rs = $mascota->editarMascota($id, $nombre, $especie, $raza, $edad, $genero, $idPropietario, $fecha);
+
+						if ($rs == true) {
+							header('Location: pet.php?a=v&id=' . $listaMascotas[0]->getID());
+						}
+
+					}catch(mysqli_sql_exception $e){
+						header('Location: /tfg/Vistas/error/error.html');
+					}					
+					
 				}
-
-
 				?>
 
 				<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>?id=<?php echo ($listaMascotas[0]->getID()); ?>" method="POST">

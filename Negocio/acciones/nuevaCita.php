@@ -10,13 +10,16 @@ $idMascota = $_POST['idMascota'];
 $idMedico = $_POST['medico'];
 $motivo = $_POST['motivo'];
 
-var_dump($idProcedimiento);
+try {
+    $rs = $tmpVisita->insertarVisita($fecha, $idProcedimiento, $idMascota, $idMedico, $motivo);
 
-$rs = $tmpVisita->insertarVisita($fecha, $idProcedimiento, $idMascota, $idMedico, $motivo);
-
-if($rs){
-    header("Location: /tfg/Vistas/visitsPet.php?id=". $idMascota."&a=v");
-}else{
-    header('Location: error.html');
+    if ($rs) {
+        header("Location: /tfg/Vistas/visitsPet.php?id=" . $idMascota . "&a=v");
+    } else {
+        header('Location: /tfg/Vistas/error/error.html');
+    }
+} catch (mysqli_sql_exception $e) {
+    header('Location: /tfg/Vistas/error/error.html');
+} catch (Exception $e) {
+    header('Location: /tfg/Vistas/error/error.html');
 }
-

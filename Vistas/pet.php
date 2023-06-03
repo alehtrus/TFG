@@ -150,7 +150,7 @@
 					<p><a href="visitsPet.php?id=' . $listaMascotas[0]->getId() . '&a=v">Visitas</a></p>			
 				</div>
 				<div class="col-xs-4">
-					<p><a onClick="history.go(-1)">Atrás</a></p>			
+					<p><a href="med.php">Atrás</a></p>			
 				</div>
 			</div>
 					'
