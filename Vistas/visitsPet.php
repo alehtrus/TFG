@@ -161,13 +161,13 @@
 					ini_set('html_errors', 0);
 					set_error_handler('customErrorHandle');
 
-					
+
 					if (!isset($_GET['id']) || empty($_GET['id'])) {
 						header('Location: index.php');
 					} else {
 						$idMascota = $_GET['id'];
 					}
-					
+
 					$idMascota = $_GET['id'];
 					$url = GET_VISITAS_MASCOTA . $idMascota;
 
@@ -198,17 +198,22 @@
 					<div class="col-md-3 col-md-push-1">
 						<h4>Últimos posts</h4>
 						<ul class="fh5co-footer-links">
-							<li><a href="#">Título de los últimos posts con un for (4)</a></li>
+							<?php
+							require_once('../Negocio/cNoticia.php');
+							$new = new Noticia();
+							$listaNews = $new->unserializeNoticias();
+							$new->pintarTitulosNoticias($listaNews);
+							?>
 						</ul>
 					</div>
 
 					<div class="col-md-3 col-md-push-1">
 						<h4>Links</h4>
 						<ul class="fh5co-footer-links">
-							<li><a href="#">Inicio</a></li>
-							<li><a href="#">Servicios</a></li>
-							<li><a href="#">Veterinarios</a></li>
-							<li><a href="#">¿Qué somos?</a></li>
+							<li><a href="index.php">Inicio</a></li>
+							<li><a href="services.php">Servicios</a></li>
+							<li><a href="vets.php">Veterinarios</a></li>
+							<li><a href="about.php">¿Qué somos?</a></li>
 						</ul>
 					</div>
 

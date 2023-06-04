@@ -49,4 +49,9 @@ class Propietario
         return $this->id;
     }
 
+    function getNombre()
+    {
+        return $this->nombre;
+    }
+
 }

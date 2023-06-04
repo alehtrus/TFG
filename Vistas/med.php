@@ -75,7 +75,7 @@
 					header("Location: index.php");
 				}
 
-				echo "<h1>Bienvenido " . $_SESSION['usuario']. "</h1>";
+				echo "<h1>Bienvenido " . $_SESSION['usuario'] . "</h1>";
 
 				$url = GET_TODAS_MASCOTAS;
 				if (file_get_contents($url) != false) {
@@ -84,7 +84,7 @@
 					$mascota = new Mascota();
 					$listaMascotas = $mascota->unserializeMascotas($contenido);
 					$mascota->pintarMascotasMeds($listaMascotas);
-				}else{
+				} else {
 					echo 'ERROR: No se puedo mostrar las mascotas';
 				}
 
@@ -99,17 +99,22 @@
 					<div class="col-md-3 col-md-push-1">
 						<h4>Últimos posts</h4>
 						<ul class="fh5co-footer-links">
-							<li><a href="#">Título de los últimos posts con un for (4)</a></li>
+							<?php
+							require_once('../Negocio/cNoticia.php');
+							$new = new Noticia();
+							$listaNews = $new->unserializeNoticias();
+							$new->pintarTitulosNoticias($listaNews);
+							?>
 						</ul>
 					</div>
 
 					<div class="col-md-3 col-md-push-1">
 						<h4>Links</h4>
 						<ul class="fh5co-footer-links">
-							<li><a href="#">Inicio</a></li>
-							<li><a href="#">Servicios</a></li>
-							<li><a href="#">Veterinarios</a></li>
-							<li><a href="#">¿Qué somos?</a></li>
+							<li><a href="index.php">Inicio</a></li>
+							<li><a href="services.php">Servicios</a></li>
+							<li><a href="vets.php">Veterinarios</a></li>
+							<li><a href="about.php">¿Qué somos?</a></li>
 						</ul>
 					</div>
 

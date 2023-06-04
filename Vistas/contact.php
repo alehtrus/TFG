@@ -134,7 +134,7 @@
 							<form action="../Negocio/acciones/enviarEmail.php" method="POST">
 								<div class="col-md-6">
 									<div class="form-group">
-										<input type="text" name="nombre" id="nombre" class="form-control" pattern="[a-zA-Z ]{3,250}" placeholder="Nombre y Apellidos"  required>
+										<input type="text" name="nombre" id="nombre" class="form-control" pattern="[a-zA-Z ]{3,250}" placeholder="Nombre y Apellidos" required>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -144,7 +144,7 @@
 								</div>
 								<div class="col-md-12">
 									<div class="form-group">
-										<textarea class="form-control" name="mensaje" id="mensaje" cols="30" rows="7" placeholder="Mensaje"  required></textarea>
+										<textarea class="form-control" name="mensaje" id="mensaje" cols="30" rows="7" placeholder="Mensaje" required></textarea>
 									</div>
 								</div>
 								<div class="col-md-12">
@@ -166,17 +166,22 @@
 					<div class="col-md-3 col-md-push-1">
 						<h4>Últimos posts</h4>
 						<ul class="fh5co-footer-links">
-							<li><a href="#">Título de los últimos posts con un for (4)</a></li>
+							<?php
+							require_once('../Negocio/cNoticia.php');
+							$new = new Noticia();
+							$listaNews = $new->unserializeNoticias();
+							$new->pintarTitulosNoticias($listaNews);
+							?>
 						</ul>
 					</div>
 
 					<div class="col-md-3 col-md-push-1">
 						<h4>Links</h4>
 						<ul class="fh5co-footer-links">
-							<li><a href="#">Inicio</a></li>
-							<li><a href="#">Servicios</a></li>
-							<li><a href="#">Veterinarios</a></li>
-							<li><a href="#">¿Qué somos?</a></li>
+							<li><a href="index.php">Inicio</a></li>
+							<li><a href="services.php">Servicios</a></li>
+							<li><a href="vets.php">Veterinarios</a></li>
+							<li><a href="about.php">¿Qué somos?</a></li>
 						</ul>
 					</div>
 

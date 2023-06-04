@@ -46,8 +46,7 @@ class Noticia
 
     function pintarNoticias($lista_noticias)
     {
-        require_once("../Util/Util.php");
-
+        require_once("../Util/Util.php");        
         if($lista_noticias != null){
             $usados = [];
 

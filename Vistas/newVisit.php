@@ -91,22 +91,21 @@
 
                     <div class="row">
                         <div class="col-xs-4">
-                            <label for="medico">Médico: </label>                            
+                            <label for="medico">Médico: </label>
                         </div>
                         <div class="col-xs-4">
                             <select name="medico" id="medico" required>
                                 <option selected="true" disabled="disables">Selecciona un médico</option>
                                 <?php
-                                
+
                                 require_once('../Negocio/cMedico.php');
                                 $tmpMed = new Medico();
                                 $lista_medicos = $tmpMed->unserializeMedicos();
 
-                                foreach($lista_medicos as $medicos)
-                                {
-                                    echo('<option value="'.$medicos->getId().'">'.$medicos->getNombre().'</option>');
+                                foreach ($lista_medicos as $medicos) {
+                                    echo ('<option value="' . $medicos->getId() . '">' . $medicos->getNombre() . '</option>');
                                 }
-                                
+
                                 ?>
                             </select>
                         </div>
@@ -123,12 +122,12 @@
 
                     <div class="row">
                         <div class="col-xs-4">
-                            <label for="procedimiento">Procedimiento: </label>                            
+                            <label for="procedimiento">Procedimiento: </label>
                         </div>
                         <div class="col-xs-4">
-                            
+
                             <select name="procedimiento" id="procedimiento" onchange="mostrarValorSeleccionado()" required>
-                                <option selected="true" disabled="disables" >Selecciona un procedimiento</option>
+                                <option selected="true" disabled="disables">Selecciona un procedimiento</option>
                                 <?php
                                 require_once('../Negocio/cProcedimientos.php');
                                 $tmpProced = new Procedimiento();
@@ -139,8 +138,7 @@
                                 }
                                 ?>
                                 <script>
-                                    function mostrarValorSeleccionado()
-                                     {
+                                    function mostrarValorSeleccionado() {
                                         // Obtener el elemento select por su id
                                         var selectElement = document.getElementById("procedimiento");
 
@@ -150,9 +148,9 @@
                                         var descripcion = opcionSeleccionada.getAttribute('data-descripcion');
 
                                         // Mostrar el valor seleccionado en la consola
-                                        var descripcionNode = document.getElementById('descripcion')                                        
+                                        var descripcionNode = document.getElementById('descripcion')
                                         descripcionNode.value = descripcion
-                                     }
+                                    }
                                 </script>
                             </select>
                         </div>
@@ -190,38 +188,40 @@
                     </div>
 
                     <div class="col-md-3 col-md-push-1">
+                        <h4>Últimos posts</h4>
+                        <ul class="fh5co-footer-links">
+                            <?php
+                            require_once('../Negocio/cNoticia.php');
+                            $new = new Noticia();
+                            $listaNews = $new->unserializeNoticias();
+                            $new->pintarTitulosNoticias($listaNews);
+                            ?>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-3 col-md-push-1">
                         <h4>Links</h4>
                         <ul class="fh5co-footer-links">
-                            <li><a href="#">Inicio</a></li>
-                            <li><a href="#">Servicios</a></li>
-                            <li><a href="#">Veterinarios</a></li>
-                            <li><a href="#">¿Qué somos?</a></li>
+                            <li><a href="index.php">Inicio</a></li>
+                            <li><a href="services.php">Servicios</a></li>
+                            <li><a href="vets.php">Veterinarios</a></li>
+                            <li><a href="about.php">¿Qué somos?</a></li>
                         </ul>
                     </div>
 
-                    <div class="col-md-4">
-                        <h4>Información de contacto</h4>
-                        <ul class="fh5co-footer-links">
-                            <li>Si estas interesado en fromar parte de la plataforma y estar en el listado de veterinarios, por favor ponte en contacto con nosotros.</li>
-                            <li><a href="tel://687217632">+34 687 21 76 32</a></li>
-                            <li><a href="mailto:info@yoursite.com">portaldelpeludo@gmail.com</a></li>
-                        </ul>
+                    <div class="row copyright">
+                        <div class="col-md-12 text-center">
+                            <p>
+                                <small class="block">&copy; 2023 Portal del Peludo</small>
+                            </p>
+                            <p>
+                            <ul class="fh5co-social-icons">
+                                <li><a href="#"><i class="icon-twitter"></i></a></li>
+                                <li><a href="#"><i class="icon-instagram"></i></a></li>
+                            </ul>
+                            </p>
+                        </div>
                     </div>
-                </div>
-
-                <div class="row copyright">
-                    <div class="col-md-12 text-center">
-                        <p>
-                            <small class="block">&copy; 2023 Portal del Peludo</small>
-                        </p>
-                        <p>
-                        <ul class="fh5co-social-icons">
-                            <li><a href="#"><i class="icon-twitter"></i></a></li>
-                            <li><a href="#"><i class="icon-instagram"></i></a></li>
-                        </ul>
-                        </p>
-                    </div>
-                </div>
             </footer>
         </div><!-- END container-wrap -->
     </div>

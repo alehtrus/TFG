@@ -92,6 +92,7 @@
                                             $rq = file_get_contents($rq);
                                             $rs = $tmpProp->unserializePropietarios($rq);
                                             $_SESSION['id'] = $rs[0]->getID();
+                                            $_SESSION['nombre'] = $rs[0]->getNombre();
 
                                             header("Location: owner.php?id=" . $rs[0]->getID());
                                         } elseif ($perfil['rol'] === "VET") {
