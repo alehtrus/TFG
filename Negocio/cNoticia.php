@@ -79,7 +79,7 @@ class Noticia
 
         if(!empty($lista_noticias)){
             for ($i = 0; $i <= 3; $i++) {
-                echo ('<li><a href="#">' . $lista_noticias[$i]->getTitulo() . '</a></li>');
+                echo ('<li><a href="'. $lista_noticias[$i]->getLink() .'"target="_blank">' . $lista_noticias[$i]->getTitulo() . '</a></li>');
             }
         }else{
             echo '<li>ERROR: No se pudo pintar los titulos. Lista no instanciada.</li>';
