@@ -56,7 +56,7 @@ class Noticia
                 
                 echo ('        
                     <div class="col-md-12 animate-box">
-                        <a href="' . $lista_noticias[$noticiaAleatoria]->getLink() . '" class="blog-post">
+                        <a href="' . $lista_noticias[$noticiaAleatoria]->getLink() . '"target="_blank" class="blog-post">
                             <span class="img" style="background-image: url(' . $lista_noticias[$noticiaAleatoria]->getImagen() . ');"></span>
                             <div class="desc">
                                 <h3>' . $lista_noticias[$noticiaAleatoria]->getTitulo() . '</h3>
