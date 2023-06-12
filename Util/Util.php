@@ -27,8 +27,8 @@ function customErrorHandle($errno, $errstr, $errfile, $errline)
 }
 
 function recortarString($texto) {
-    if (strlen($texto) > 120) {
-        $textoRecortado = substr($texto, 0, 30) . "...";
+    if (strlen($texto) > 100) {
+        $textoRecortado = substr($texto, 0, 100) . "...";
         return $textoRecortado;
     } else {
         return $texto;
@@ -36,7 +36,7 @@ function recortarString($texto) {
 }
 
 function cambiarNumAleatorio($lista_noticias, $usados){
-    $noticiaAleatoria = random_int(0, count($lista_noticias));
+    $noticiaAleatoria = random_int(0, count($lista_noticias) -1 );
     
     if(in_array($noticiaAleatoria, $usados)){
         return cambiarNumAleatorio($lista_noticias, $usados);

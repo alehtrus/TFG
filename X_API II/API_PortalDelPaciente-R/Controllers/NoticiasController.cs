@@ -11,7 +11,7 @@ namespace API_PortalDelPaciente_R.Controllers
     {
 
         [HttpGet]
-        public ActionResult GetRssMascotas()
+        public ActionResult GetRssNoticias()
         {
             string rssUrl = "https://www.diariodemallorca.es/rss/section/2612"; // URL del feed RSS
 

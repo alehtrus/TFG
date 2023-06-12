@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Google.Protobuf.WellKnownTypes;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -65,6 +66,10 @@ namespace PortalDelPeludo_API.Controllers
         public IActionResult Insert(Model.Mascota model)
         {
             int resultado = 0;
+            if (String.IsNullOrEmpty(model.fecha_ultima_visita)) 
+            {
+                model.fecha_ultima_visita = "0000/00/00";
+            }
             using (var db = new MySqlConnection(_connection))
             {
                 string query = "insert into mascotas(id, nombre, especie, raza, edad, genero, id_propietario, fecha_ultima_visita)"
